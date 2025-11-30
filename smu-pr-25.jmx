@@ -5,6 +5,8 @@
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
     </TestPlan>
     <hashTree>
       <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager">
@@ -119,17 +121,17 @@
           </elementProp>
           <elementProp name="virtualUsers" elementType="Argument">
             <stringProp name="Argument.name">virtualUsers</stringProp>
-            <stringProp name="Argument.value">${__P(virtualUsers,50)}</stringProp>
+            <stringProp name="Argument.value">${__P(virtualUsers,1)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="rampUp" elementType="Argument">
             <stringProp name="Argument.name">rampUp</stringProp>
-            <stringProp name="Argument.value">${__P(rampUp,200)}</stringProp>
+            <stringProp name="Argument.value">${__P(rampUp,1)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="testTime" elementType="Argument">
             <stringProp name="Argument.name">testTime</stringProp>
-            <stringProp name="Argument.value">${__P(testTime,100)}</stringProp>
+            <stringProp name="Argument.value">${__P(testTime,1)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="timestamp" elementType="Argument">
@@ -166,7 +168,7 @@
         <stringProp name="TestPlan.comments">talent-mercadolibre-beta.starmeup.com</stringProp>
       </Arguments>
       <hashTree/>
-      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="BETA - CSV Data Set Config">
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="BETA - CSV Data Set Config" enabled="true">
         <stringProp name="filename">Beta_dataset_smu_pr-25.csv</stringProp>
         <stringProp name="fileEncoding"></stringProp>
         <stringProp name="variableNames">user,password,identification</stringProp>
@@ -202,7 +204,7 @@
         <stringProp name="shareMode">shareMode.all</stringProp>
       </CSVDataSet>
       <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Beta Thread Group -Talent Review">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Beta Thread Group -Talent Review" enabled="true">
         <stringProp name="ThreadGroup.num_threads">${virtualUsers}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampUp}</stringProp>
         <stringProp name="ThreadGroup.duration">${testTime}</stringProp>
@@ -216,17 +218,17 @@
       <hashTree>
         <OnceOnlyController guiclass="OnceOnlyControllerGui" testclass="OnceOnlyController" testname=" Login Once Only Controller" enabled="true"/>
         <hashTree>
-          <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="300 Uniform Random Timer">
+          <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="300 Uniform Random Timer" enabled="true">
             <stringProp name="ConstantTimer.delay">100</stringProp>
             <stringProp name="RandomTimer.range">300.0</stringProp>
           </UniformRandomTimer>
           <hashTree/>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="1.  Authentication">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="1.  Authentication" enabled="true">
             <boolProp name="TransactionController.parent">true</boolProp>
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.1 /auth/v2/sec/product-info">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.1 /auth/v2/sec/product-info" enabled="true">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -249,7 +251,7 @@
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="User-Agent" elementType="Header">
                     <stringProp name="Header.name">User-Agent</stringProp>
@@ -288,7 +290,7 @@
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.2 /starmeup-api/v2/stellar/resources/locale">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.2 /starmeup-api/v2/stellar/resources/locale" enabled="true">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -311,7 +313,7 @@
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="User-Agent" elementType="Header">
                     <stringProp name="Header.name">User-Agent</stringProp>
@@ -350,7 +352,7 @@
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.3 /auth/v2/sec/lookup">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.3 /auth/v2/sec/lookup" enabled="true">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -380,7 +382,7 @@
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="User-Agent" elementType="Header">
                     <stringProp name="Header.name">User-Agent</stringProp>
@@ -423,7 +425,7 @@
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.4 /auth/v3/sec/authenticateuser?o=SMU_FEEDBACK_WEB&amp;v=1">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.4 /auth/v3/sec/authenticateuser?o=SMU_FEEDBACK_WEB&amp;v=1" enabled="true">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -444,7 +446,7 @@
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="User-Agent" elementType="Header">
                     <stringProp name="Header.name">User-Agent</stringProp>
@@ -490,7 +492,7 @@
                 <stringProp name="TestPlan.comments">Created from cURL on 2025-07-02T14:57:25.1512921</stringProp>
               </HeaderManager>
               <hashTree/>
-              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="accessToken_ SON Extractor">
+              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="accessToken_ SON Extractor" enabled="true">
                 <stringProp name="JSONPostProcessor.referenceNames">accessToken</stringProp>
                 <stringProp name="JSONPostProcessor.jsonPathExprs">$.token</stringProp>
                 <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
@@ -500,11 +502,11 @@
             </hashTree>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="2.0 SMU_Home">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="2.0 SMU_Home" enabled="true">
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.1 GET /os-member/api/v1/community/preferences/configurations">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.1 GET /os-member/api/v1/community/preferences/configurations" enabled="true">
             <stringProp name="TestPlan.comments">Created from cURL on 2025-10-21T14:59:54.5758471</stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -534,7 +536,7 @@
             <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="accept" elementType="Header">
                   <stringProp name="Header.name">accept</stringProp>
@@ -593,7 +595,7 @@
             </HeaderManager>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.2 GET  /betterme/api/users/assessment360-meli-30063854">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.2 GET  /betterme/api/users/assessment360-meli-30063854" enabled="true">
             <stringProp name="TestPlan.comments">Created from cURL on 2025-10-21T14:44:06.9520759</stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -669,21 +671,21 @@
               <stringProp name="TestPlan.comments">Created from cURL on 2025-07-02T15:48:51.2996609</stringProp>
             </HeaderManager>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="evalueeId_ SON Extractor">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="evalueeId_ SON Extractor" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">evalueeId</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.result.id</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">evalueeId_NotFound</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="communityId_ SON Extractor">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="communityId_ SON Extractor" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">communityId</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.result.communityId</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">communityId_NotFound</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="uid_ SON Extractor">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="uid_ SON Extractor" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">uid</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.result.uid</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
@@ -691,7 +693,7 @@
             </JSONPostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.3 GET /os-member/api/v2/community/member/menu">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.3 GET /os-member/api/v2/community/member/menu" enabled="true">
             <stringProp name="TestPlan.comments">Created from cURL on 2025-10-21T15:02:18.286315</stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -742,7 +744,7 @@
             <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="accept" elementType="Header">
                   <stringProp name="Header.name">accept</stringProp>
@@ -801,7 +803,7 @@
             </HeaderManager>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.4 GET /starmeup-api/v2/stellar/resources/locale">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.4 GET /starmeup-api/v2/stellar/resources/locale" enabled="true">
             <stringProp name="TestPlan.comments">Created from cURL on 2025-10-21T15:04:02.3500508</stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -838,7 +840,7 @@
             <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="accept" elementType="Header">
                   <stringProp name="Header.name">accept</stringProp>
@@ -893,7 +895,7 @@
             </HeaderManager>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.5 GET /global-themes/meli/config.json">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.5 GET /global-themes/meli/config.json" enabled="true">
             <stringProp name="TestPlan.comments">Created from cURL on 2025-10-21T15:05:41.1385753</stringProp>
             <stringProp name="HTTPSampler.domain">os-assets.starmeup.com</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -908,7 +910,7 @@
             <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="sec-ch-ua-platform" elementType="Header">
                   <stringProp name="Header.name">sec-ch-ua-platform</stringProp>
@@ -939,7 +941,7 @@
             </HeaderManager>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.6 GET /os-member/api/v1/community/member">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.6 GET /os-member/api/v1/community/member" enabled="true">
             <stringProp name="TestPlan.comments">Created from cURL on 2025-10-21T15:06:37.3575977</stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -969,7 +971,7 @@
             <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="accept" elementType="Header">
                   <stringProp name="Header.name">accept</stringProp>
@@ -1028,7 +1030,7 @@
             </HeaderManager>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.7 GET /betterme/api/v1/user-feedback-subperiod-configuration">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.7 GET /betterme/api/v1/user-feedback-subperiod-configuration" enabled="true">
             <stringProp name="TestPlan.comments">Created from cURL on 2025-10-21T15:08:34.424003</stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -1058,7 +1060,7 @@
             <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="accept" elementType="Header">
                   <stringProp name="Header.name">accept</stringProp>
@@ -1112,7 +1114,7 @@
               <stringProp name="TestPlan.comments">Created from cURL on 2025-10-21T15:08:34.424003</stringProp>
             </HeaderManager>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="periodId_ SON Extractor">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="periodId_ SON Extractor" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">periodId</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.result[0].periodId</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
@@ -1120,7 +1122,7 @@
             </JSONPostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.8 GET /os-member/api/v1/community/preferences">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.8 GET /os-member/api/v1/community/preferences" enabled="true">
             <stringProp name="TestPlan.comments">Created from cURL on 2025-10-21T15:09:38.5501986</stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -1157,7 +1159,7 @@
             <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="accept" elementType="Header">
                   <stringProp name="Header.name">accept</stringProp>
@@ -1216,7 +1218,7 @@
             </HeaderManager>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.9 GET /starmeup-api/v2/stellar/user/organizations">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.9 GET /starmeup-api/v2/stellar/user/organizations" enabled="true">
             <stringProp name="TestPlan.comments">Created from cURL on 2025-10-21T15:11:23.1658945</stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -1260,7 +1262,7 @@
             <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="accept" elementType="Header">
                   <stringProp name="Header.name">accept</stringProp>
@@ -1315,7 +1317,7 @@
             </HeaderManager>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.10 GET /notifications/api/v3/notifications">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.10 GET /notifications/api/v3/notifications" enabled="true">
             <stringProp name="TestPlan.comments">Created from cURL on 2025-10-21T15:13:49.5541553</stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -1373,7 +1375,7 @@
             <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="accept" elementType="Header">
                   <stringProp name="Header.name">accept</stringProp>
@@ -1428,7 +1430,7 @@
             </HeaderManager>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.11 GET /betterme/api/v3/evaluations/1404237/selfevaluation">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.11 GET /betterme/api/v3/evaluations/1404237/selfevaluation" enabled="true">
             <stringProp name="TestPlan.comments">Created from cURL on 2025-10-21T15:15:15.2877394</stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -1458,7 +1460,7 @@
             <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="accept" elementType="Header">
                   <stringProp name="Header.name">accept</stringProp>
@@ -1512,14 +1514,14 @@
               <stringProp name="TestPlan.comments">Created from cURL on 2025-10-21T15:15:15.2883</stringProp>
             </HeaderManager>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="selfevaluationId_ SON Extractor">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="selfevaluationId_ SON Extractor" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">selfevaluationId</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.result.id</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">selfevaluationId_NotFound</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="evaluetionStatus_ SON Extractor">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="evaluetionStatus_ SON Extractor" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">evaluationStatus</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.result.status</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
@@ -1527,7 +1529,7 @@
             </JSONPostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.12 GET /betterme/api/evaluations/assigned">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.12 GET /betterme/api/evaluations/assigned" enabled="true">
             <stringProp name="TestPlan.comments">Created from cURL on 2025-10-21T15:17:47.0470355</stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -1564,7 +1566,7 @@
             <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="accept" elementType="Header">
                   <stringProp name="Header.name">accept</stringProp>
@@ -1619,29 +1621,29 @@
             </HeaderManager>
             <hashTree/>
           </hashTree>
-          <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="thinkTime Gaussian Random Timer">
+          <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="thinkTime Gaussian Random Timer" enabled="true">
             <stringProp name="ConstantTimer.delay">${constantDelay}</stringProp>
             <stringProp name="RandomTimer.range">${thinkTime}</stringProp>
           </GaussianRandomTimer>
           <hashTree/>
         </hashTree>
-        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="3.0 Edit_self-evaluation  If Controller " enabled="false">
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="3.0 Edit_self-evaluation  If Controller " enabled="true">
           <stringProp name="IfController.condition">${__jexl3(&quot;${evaluationStatus}&quot; == &quot;DRAFT&quot;)}</stringProp>
           <boolProp name="IfController.evaluateAll">false</boolProp>
           <boolProp name="IfController.useExpression">true</boolProp>
         </IfController>
         <hashTree>
-          <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="thinkTime Gaussian Random Timer">
+          <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="thinkTime Gaussian Random Timer" enabled="true">
             <stringProp name="ConstantTimer.delay">${constantDelay}</stringProp>
             <stringProp name="RandomTimer.range">${thinkTime}</stringProp>
           </GaussianRandomTimer>
           <hashTree/>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="3.0 Edit_self-evaluation">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="3.0 Edit_self-evaluation" enabled="true">
             <boolProp name="TransactionController.parent">true</boolProp>
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.1 GET /betterme/api/periods">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.1 GET /betterme/api/periods" enabled="true">
               <stringProp name="TestPlan.comments">Created from cURL on 2025-10-21T15:23:10.8904995</stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -1678,7 +1680,7 @@
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="accept" elementType="Header">
                     <stringProp name="Header.name">accept</stringProp>
@@ -1733,7 +1735,7 @@
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.2 GET /betterme/api/v3/evaluations/11718">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.2 GET /betterme/api/v3/evaluations/11718" enabled="true">
               <stringProp name="TestPlan.comments">Created from cURL on 2025-10-21T15:25:04.5451662</stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -1763,7 +1765,7 @@
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="accept" elementType="Header">
                     <stringProp name="Header.name">accept</stringProp>
@@ -1818,7 +1820,7 @@
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.3 GET /betterme/api/communities/4550">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.3 GET /betterme/api/communities/4550" enabled="true">
               <stringProp name="TestPlan.comments">Created from cURL on 2025-10-21T15:28:12.5766494</stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -1848,7 +1850,7 @@
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="accept" elementType="Header">
                     <stringProp name="Header.name">accept</stringProp>
@@ -1903,7 +1905,7 @@
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.4 GET /betterme/api/v3/goals/my-goals">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.4 GET /betterme/api/v3/goals/my-goals" enabled="true">
               <stringProp name="TestPlan.comments">Created from cURL on 2025-10-21T15:32:08.395993</stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -1954,7 +1956,7 @@
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="accept" elementType="Header">
                     <stringProp name="Header.name">accept</stringProp>
@@ -2009,7 +2011,7 @@
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.5 GET /betterme/api/survey/type/1404237/tier">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.5 GET /betterme/api/survey/type/1404237/tier" enabled="true">
               <stringProp name="TestPlan.comments">Created from cURL on 2025-10-21T15:33:48.5376693</stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2046,7 +2048,7 @@
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="accept" elementType="Header">
                     <stringProp name="Header.name">accept</stringProp>
@@ -2100,7 +2102,7 @@
                 <stringProp name="TestPlan.comments">Created from cURL on 2025-10-21T15:33:48.5376693</stringProp>
               </HeaderManager>
               <hashTree/>
-              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="evalueeType_ SON Extractor">
+              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="evalueeType_ SON Extractor" enabled="true">
                 <stringProp name="JSONPostProcessor.referenceNames">evalueeType</stringProp>
                 <stringProp name="JSONPostProcessor.jsonPathExprs">$.result.type</stringProp>
                 <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
@@ -2108,7 +2110,7 @@
               </JSONPostProcessor>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.6 GET /betterme/api/v1/users/talent-card">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.6 GET /betterme/api/v1/users/talent-card" enabled="true">
               <stringProp name="TestPlan.comments">Created from cURL on 2025-10-21T15:35:13.4283988</stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2152,7 +2154,7 @@
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="accept" elementType="Header">
                     <stringProp name="Header.name">accept</stringProp>
@@ -2207,7 +2209,7 @@
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.7 GET /notifications/v3/i18n/resources">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.7 GET /notifications/v3/i18n/resources" enabled="true">
               <stringProp name="TestPlan.comments">Created from cURL on 2025-10-21T15:38:34.4527261</stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2244,7 +2246,7 @@
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="accept" elementType="Header">
                     <stringProp name="Header.name">accept</stringProp>
@@ -2299,7 +2301,7 @@
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.8 GET /betterme/api/v1/survey/SELF_EVALUATION">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.8 GET /betterme/api/v1/survey/SELF_EVALUATION" enabled="true">
               <stringProp name="TestPlan.comments">SELF_EVALUATION</stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2329,7 +2331,7 @@
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="accept" elementType="Header">
                     <stringProp name="Header.name">accept</stringProp>
@@ -2383,7 +2385,7 @@
                 <stringProp name="TestPlan.comments">Created from cURL on 2025-10-21T15:39:20.6312307</stringProp>
               </HeaderManager>
               <hashTree/>
-              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="questionId_ SON Extractor">
+              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="questionId_ SON Extractor" enabled="true">
                 <stringProp name="JSONPostProcessor.referenceNames">questionId</stringProp>
                 <stringProp name="JSONPostProcessor.jsonPathExprs">$.result[0].id</stringProp>
                 <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
@@ -2391,12 +2393,12 @@
               </JSONPostProcessor>
               <hashTree/>
             </hashTree>
-            <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="userTime Gaussian Random Timer">
+            <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="userTime Gaussian Random Timer" enabled="true">
               <stringProp name="ConstantTimer.delay">300</stringProp>
               <stringProp name="RandomTimer.range">${userTime}</stringProp>
             </GaussianRandomTimer>
             <hashTree/>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.9 PUT /betterme/api/v3/evaluations/11718?o=SMU_FEEDBACK_WEB&amp;v=2">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.9 PUT /betterme/api/v3/evaluations/11718?o=SMU_FEEDBACK_WEB&amp;v=2" enabled="true">
               <stringProp name="TestPlan.comments">Created from cURL on 2025-10-21T15:40:23.0568023</stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2417,7 +2419,7 @@
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="accept" elementType="Header">
                     <stringProp name="Header.name">accept</stringProp>
@@ -2476,7 +2478,7 @@
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.10 GET /betterme/api/v3/evaluations/1404237/selfevaluation">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.10 GET /betterme/api/v3/evaluations/1404237/selfevaluation" enabled="true">
               <stringProp name="TestPlan.comments">Created from cURL on 2025-10-21T15:43:43.2502876</stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2506,7 +2508,7 @@
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="accept" elementType="Header">
                     <stringProp name="Header.name">accept</stringProp>
@@ -2563,17 +2565,17 @@
             </hashTree>
           </hashTree>
         </hashTree>
-        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="4.0 Do a self-evaluation If Controller " enabled="false">
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="4.0 Do a self-evaluation If Controller " enabled="true">
           <stringProp name="IfController.condition">${__jexl3(&quot;${evaluationStatus}&quot; == &quot;NOT_STARTED&quot; )}</stringProp>
           <boolProp name="IfController.evaluateAll">false</boolProp>
           <boolProp name="IfController.useExpression">true</boolProp>
         </IfController>
         <hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="4.0 Do a self-evaluation">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="4.0 Do a self-evaluation" enabled="true">
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.1 GET /betterme/api/v3/goals/my-goals">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.1 GET /betterme/api/v3/goals/my-goals" enabled="true">
               <stringProp name="TestPlan.comments">Created from cURL on 2025-10-22T14:32:18.3338468</stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2624,7 +2626,7 @@
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="accept" elementType="Header">
                     <stringProp name="Header.name">accept</stringProp>
@@ -2679,7 +2681,7 @@
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.2 GET /betterme/api/communities/4550">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.2 GET /betterme/api/communities/4550" enabled="true">
               <stringProp name="TestPlan.comments">Created from cURL on 2025-10-22T14:32:33.9900712</stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2709,7 +2711,7 @@
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="accept" elementType="Header">
                     <stringProp name="Header.name">accept</stringProp>
@@ -2764,7 +2766,7 @@
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.3 GET /betterme/api/v1/users/talent-card">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.3 GET /betterme/api/v1/users/talent-card" enabled="true">
               <stringProp name="TestPlan.comments">Created from cURL on 2025-10-22T14:32:45.6374986</stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2808,7 +2810,7 @@
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="accept" elementType="Header">
                     <stringProp name="Header.name">accept</stringProp>
@@ -2863,7 +2865,7 @@
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.4 GET /betterme/api/survey/type/{evalueeId}/tier">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.4 GET /betterme/api/survey/type/{evalueeId}/tier" enabled="true">
               <stringProp name="TestPlan.comments">Created from cURL on 2025-10-22T14:32:57.1014421</stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2900,7 +2902,7 @@
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="accept" elementType="Header">
                     <stringProp name="Header.name">accept</stringProp>
@@ -2954,7 +2956,7 @@
                 <stringProp name="TestPlan.comments">Created from cURL on 2025-10-22T14:32:57.1014421</stringProp>
               </HeaderManager>
               <hashTree/>
-              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="evalueeType_ SON Extractor">
+              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="evalueeType_ SON Extractor" enabled="true">
                 <stringProp name="JSONPostProcessor.referenceNames">evalueeType</stringProp>
                 <stringProp name="JSONPostProcessor.jsonPathExprs">$.result.type</stringProp>
                 <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
@@ -2962,7 +2964,7 @@
               </JSONPostProcessor>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.5 GET /notifications/v3/i18n/resources">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.5 GET /notifications/v3/i18n/resources" enabled="true">
               <stringProp name="TestPlan.comments">Created from cURL on 2025-10-22T14:33:16.143364</stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2999,7 +3001,7 @@
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="accept" elementType="Header">
                     <stringProp name="Header.name">accept</stringProp>
@@ -3054,7 +3056,7 @@
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.6 GET /betterme/api/v3/goals/my-goals">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.6 GET /betterme/api/v3/goals/my-goals" enabled="true">
               <stringProp name="TestPlan.comments">Created from cURL on 2025-10-22T16:34:57.1638778</stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -3105,7 +3107,7 @@
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="accept" elementType="Header">
                     <stringProp name="Header.name">accept</stringProp>
@@ -3160,7 +3162,7 @@
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.7 GET /betterme/api/periods">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.7 GET /betterme/api/periods" enabled="true">
               <stringProp name="TestPlan.comments">Created from cURL on 2025-10-21T15:23:10.8904995</stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -3197,7 +3199,7 @@
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="accept" elementType="Header">
                     <stringProp name="Header.name">accept</stringProp>
@@ -3252,7 +3254,7 @@
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.8 GET /betterme/api/v1/survey/SELF_EVALUATION">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.8 GET /betterme/api/v1/survey/SELF_EVALUATION" enabled="true">
               <stringProp name="TestPlan.comments">Created from cURL on 2025-10-21T15:39:20.6312307</stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -3282,7 +3284,7 @@
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="accept" elementType="Header">
                     <stringProp name="Header.name">accept</stringProp>
@@ -3336,7 +3338,7 @@
                 <stringProp name="TestPlan.comments">Created from cURL on 2025-10-21T15:39:20.6312307</stringProp>
               </HeaderManager>
               <hashTree/>
-              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="questionId_ SON Extractor">
+              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="questionId_ SON Extractor" enabled="true">
                 <stringProp name="JSONPostProcessor.referenceNames">questionId</stringProp>
                 <stringProp name="JSONPostProcessor.jsonPathExprs">$.result[0].id</stringProp>
                 <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
@@ -3344,7 +3346,7 @@
               </JSONPostProcessor>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.9 GET /os-member/api/v2/pending-tasks">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.9 GET /os-member/api/v2/pending-tasks" enabled="true">
               <stringProp name="TestPlan.comments">Created from cURL on 2025-11-18T14:55:44.7339522</stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -3381,7 +3383,7 @@
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="accept" elementType="Header">
                     <stringProp name="Header.name">accept</stringProp>
@@ -3436,12 +3438,12 @@
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="userTime Gaussian Random Timer">
+            <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="userTime Gaussian Random Timer" enabled="true">
               <stringProp name="ConstantTimer.delay">300</stringProp>
               <stringProp name="RandomTimer.range">${userTime}</stringProp>
             </GaussianRandomTimer>
             <hashTree/>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.10 POST /betterme/api/v3/evaluations?o=SMU_FEEDBACK_WEB&amp;v=2">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.10 POST /betterme/api/v3/evaluations?o=SMU_FEEDBACK_WEB&amp;v=2" enabled="true">
               <stringProp name="TestPlan.comments">Created from cURL on 2025-10-22T16:35:18.4257477</stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -3462,7 +3464,7 @@
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="accept" elementType="Header">
                     <stringProp name="Header.name">accept</stringProp>
@@ -3522,17 +3524,17 @@
               <hashTree/>
             </hashTree>
           </hashTree>
-          <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="thinkTime Gaussian Random Timer">
+          <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="thinkTime Gaussian Random Timer" enabled="true">
             <stringProp name="ConstantTimer.delay">${constantDelay}</stringProp>
             <stringProp name="RandomTimer.range">${thinkTime}</stringProp>
           </GaussianRandomTimer>
           <hashTree/>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="5.0 Responder Feedback" enabled="false">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="5.0 Responder Feedback" enabled="true">
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="5.1 GET /betterme/api/v2/feedbacks/requests/received">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="5.1 GET /betterme/api/v2/feedbacks/requests/received" enabled="true">
             <stringProp name="TestPlan.comments">Created from cURL on 2025-10-31T11:08:42.4071273</stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -3583,7 +3585,7 @@
             <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="accept" elementType="Header">
                   <stringProp name="Header.name">accept</stringProp>
@@ -3637,14 +3639,14 @@
               <stringProp name="TestPlan.comments">Created from cURL on 2025-10-31T11:08:42.4071273</stringProp>
             </HeaderManager>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="feedbackId_ SON Extractor">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="feedbackId_ SON Extractor" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">feedbackId</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.result[0].feedback.id</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">feedbackId_NotFound</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="requestId_ SON Extractor">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="requestId_ SON Extractor" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">requestId</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.result[0].requestId</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
@@ -3652,13 +3654,13 @@
             </JSONPostProcessor>
             <hashTree/>
           </hashTree>
-          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Ther si Feedback - If Controller">
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Ther si Feedback - If Controller" enabled="true">
             <stringProp name="IfController.condition">${__jexl3(&quot;${requestId}&quot; != &quot;requestId_NotFound&quot;)}</stringProp>
             <boolProp name="IfController.evaluateAll">false</boolProp>
             <boolProp name="IfController.useExpression">true</boolProp>
           </IfController>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="5.2 GET /betterme/api/users/assessment360-meli-30072390">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="5.2 GET /betterme/api/users/assessment360-meli-30072390" enabled="true">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -3688,7 +3690,7 @@
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="User-Agent" elementType="Header">
                     <stringProp name="Header.name">User-Agent</stringProp>
@@ -3735,7 +3737,7 @@
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="5.3 GET /starmeup-api/v2/stellar/notifications/pull">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="5.3 GET /starmeup-api/v2/stellar/notifications/pull" enabled="true">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -3800,7 +3802,7 @@
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="User-Agent" elementType="Header">
                     <stringProp name="Header.name">User-Agent</stringProp>
@@ -3847,7 +3849,7 @@
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="5.4 GET /betterme/api/v2/feedbacks/{feedbackId}">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="5.4 GET /betterme/api/v2/feedbacks/{feedbackId}" enabled="true">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -3877,7 +3879,7 @@
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="User-Agent" elementType="Header">
                     <stringProp name="Header.name">User-Agent</stringProp>
@@ -3924,7 +3926,7 @@
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="5.5 GET /starmeup-api/v2/stellar/notifications/pull">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="5.5 GET /starmeup-api/v2/stellar/notifications/pull" enabled="true">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -3989,7 +3991,7 @@
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="User-Agent" elementType="Header">
                     <stringProp name="Header.name">User-Agent</stringProp>
@@ -4035,13 +4037,13 @@
                 <stringProp name="TestPlan.comments">Created from cURL on 2025-11-04T10:54:05.4054939</stringProp>
               </HeaderManager>
               <hashTree/>
-              <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="userTime Gaussian Random Timer">
+              <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="userTime Gaussian Random Timer" enabled="true">
                 <stringProp name="ConstantTimer.delay">300</stringProp>
                 <stringProp name="RandomTimer.range">${userTime}</stringProp>
               </GaussianRandomTimer>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="5.6 POST /betterme/api/feedbacks/requests/18342/reply?o=SMU_FEEDBACK_WEB&amp;v=2">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="5.6 POST /betterme/api/feedbacks/requests/18342/reply?o=SMU_FEEDBACK_WEB&amp;v=2" enabled="true">
               <stringProp name="TestPlan.comments">Created from cURL on 2025-11-04T15:32:54.59497</stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -4074,7 +4076,7 @@ Content-Type: application/json&#xd;
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="accept" elementType="Header">
                     <stringProp name="Header.name">accept</stringProp>
@@ -4133,7 +4135,7 @@ Content-Type: application/json&#xd;
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="5.7 GET /betterme/api/v2/feedbacks/requests/received">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="5.7 GET /betterme/api/v2/feedbacks/requests/received" enabled="true">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -4184,7 +4186,7 @@ Content-Type: application/json&#xd;
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="User-Agent" elementType="Header">
                     <stringProp name="Header.name">User-Agent</stringProp>
@@ -4227,7 +4229,7 @@ Content-Type: application/json&#xd;
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="5.8 GET  /starmeup-api/v2/stellar/notifications/pull">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="5.8 GET  /starmeup-api/v2/stellar/notifications/pull" enabled="true">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -4292,7 +4294,7 @@ Content-Type: application/json&#xd;
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="User-Agent" elementType="Header">
                     <stringProp name="Header.name">User-Agent</stringProp>
@@ -4339,7 +4341,7 @@ Content-Type: application/json&#xd;
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="5.9 GET  /starmeup-api/v2/stellar/notifications/pull">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="5.9 GET  /starmeup-api/v2/stellar/notifications/pull" enabled="true">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -4404,7 +4406,7 @@ Content-Type: application/json&#xd;
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="User-Agent" elementType="Header">
                     <stringProp name="Header.name">User-Agent</stringProp>
@@ -4453,16 +4455,16 @@ Content-Type: application/json&#xd;
             </hashTree>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="6.0 Solicitar Feedback    " enabled="false">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="6.0 Solicitar Feedback    ">
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
-          <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="thinkTime Gaussian Random Timer">
+          <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="thinkTime Gaussian Random Timer" enabled="true">
             <stringProp name="ConstantTimer.delay">${constantDelay}</stringProp>
             <stringProp name="RandomTimer.range">${thinkTime}</stringProp>
           </GaussianRandomTimer>
           <hashTree/>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.1 GET /os-member/api/v2/community/members/roles">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.1 GET /os-member/api/v2/community/members/roles" enabled="true">
             <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -4492,7 +4494,7 @@ Content-Type: application/json&#xd;
             <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="User-Agent" elementType="Header">
                   <stringProp name="Header.name">User-Agent</stringProp>
@@ -4543,7 +4545,7 @@ Content-Type: application/json&#xd;
             </HeaderManager>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.2 GET /betterme/api/v1/alerts">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.2 GET /betterme/api/v1/alerts" enabled="true">
             <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -4594,7 +4596,7 @@ Content-Type: application/json&#xd;
             <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="User-Agent" elementType="Header">
                   <stringProp name="Header.name">User-Agent</stringProp>
@@ -4645,7 +4647,7 @@ Content-Type: application/json&#xd;
             </HeaderManager>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.3 POST /betterme/api/v1/my-team/distribution?o=SMU_FEEDBACK_WEB&amp;v=2">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.3 POST /betterme/api/v1/my-team/distribution?o=SMU_FEEDBACK_WEB&amp;v=2" enabled="true">
             <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -4666,7 +4668,7 @@ Content-Type: application/json&#xd;
             <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="User-Agent" elementType="Header">
                   <stringProp name="Header.name">User-Agent</stringProp>
@@ -4721,7 +4723,7 @@ Content-Type: application/json&#xd;
             </HeaderManager>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.4 POST /os-member/api/v1/community/member/my-team/performanc">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.4 POST /os-member/api/v1/community/member/my-team/performanc" enabled="true">
             <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -4742,7 +4744,7 @@ Content-Type: application/json&#xd;
             <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="User-Agent" elementType="Header">
                   <stringProp name="Header.name">User-Agent</stringProp>
@@ -4797,7 +4799,7 @@ Content-Type: application/json&#xd;
             </HeaderManager>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.5 GET /betterme/api/users/performance-meli-30073341">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.5 GET /betterme/api/users/performance-meli-30073341" enabled="true">
             <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -4827,7 +4829,7 @@ Content-Type: application/json&#xd;
             <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="User-Agent" elementType="Header">
                   <stringProp name="Header.name">User-Agent</stringProp>
@@ -4877,7 +4879,7 @@ Content-Type: application/json&#xd;
               <stringProp name="TestPlan.comments">Created from cURL on 2025-11-11T14:32:25.2432403</stringProp>
             </HeaderManager>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="employeeUid_JSON Extractor">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="employeeUid_JSON Extractor" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">employeeUid</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.result.uid</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
@@ -4885,7 +4887,7 @@ Content-Type: application/json&#xd;
             </JSONPostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.6 GET /betterme/api/v1/users/38d00928be3f028d0a463852014e680d/feedback-requests">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.6 GET /betterme/api/v1/users/38d00928be3f028d0a463852014e680d/feedback-requests" enabled="true">
             <stringProp name="TestPlan.comments">38d00928be3f028d0a463852014e680d</stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -4915,7 +4917,7 @@ Content-Type: application/json&#xd;
             <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="User-Agent" elementType="Header">
                   <stringProp name="Header.name">User-Agent</stringProp>
@@ -4961,7 +4963,7 @@ Content-Type: application/json&#xd;
               <stringProp name="TestPlan.comments">Created from cURL on 2025-11-11T14:32:25.2513675</stringProp>
             </HeaderManager>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="collaboratorsId_JSON Extractor">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="collaboratorsId_JSON Extractor" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">collaboratorsId</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.result.collaborators[0]</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
@@ -4969,13 +4971,13 @@ Content-Type: application/json&#xd;
             </JSONPostProcessor>
             <hashTree/>
           </hashTree>
-          <IfController guiclass="IfControllerPanel" testclass="IfController" testname=" Send Feedback Request If Controller">
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname=" Send Feedback Request If Controller" enabled="true">
             <stringProp name="IfController.condition">${__jexl3(&quot;${collaboratorsId}&quot; != &quot;collaboratorsId_NotFound&quot;)}</stringProp>
             <boolProp name="IfController.evaluateAll">false</boolProp>
             <boolProp name="IfController.useExpression">true</boolProp>
           </IfController>
           <hashTree>
-            <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="names CSV Data Set Config">
+            <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="names CSV Data Set Config" enabled="true">
               <stringProp name="filename">names.csv</stringProp>
               <stringProp name="fileEncoding"></stringProp>
               <stringProp name="variableNames">name</stringProp>
@@ -4987,7 +4989,7 @@ Content-Type: application/json&#xd;
               <stringProp name="shareMode">shareMode.all</stringProp>
             </CSVDataSet>
             <hashTree/>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.7 GET /betterme/api/v1/feedback-suggestion-to-leader">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.7 GET /betterme/api/v1/feedback-suggestion-to-leader" enabled="true">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -5031,7 +5033,7 @@ Content-Type: application/json&#xd;
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="User-Agent" elementType="Header">
                     <stringProp name="Header.name">User-Agent</stringProp>
@@ -5078,7 +5080,7 @@ Content-Type: application/json&#xd;
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.8 GET /starmeup-api/v2/stellar/notifications/pull">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.8 GET /starmeup-api/v2/stellar/notifications/pull" enabled="true">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -5143,7 +5145,7 @@ Content-Type: application/json&#xd;
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="User-Agent" elementType="Header">
                     <stringProp name="Header.name">User-Agent</stringProp>
@@ -5194,7 +5196,7 @@ Content-Type: application/json&#xd;
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.9 GET /starmeup-api/v2/stellar/languages">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.9 GET /starmeup-api/v2/stellar/languages" enabled="true">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -5224,7 +5226,7 @@ Content-Type: application/json&#xd;
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="User-Agent" elementType="Header">
                     <stringProp name="Header.name">User-Agent</stringProp>
@@ -5275,7 +5277,7 @@ Content-Type: application/json&#xd;
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.10 GET /starmeup-api/v2/stellar/notifications/pull">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.10 GET /starmeup-api/v2/stellar/notifications/pull" enabled="true">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -5340,7 +5342,7 @@ Content-Type: application/json&#xd;
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="User-Agent" elementType="Header">
                     <stringProp name="Header.name">User-Agent</stringProp>
@@ -5391,7 +5393,7 @@ Content-Type: application/json&#xd;
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.11 GET /starmeup-api/v2/stellar/notifications/pull">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.11 GET /starmeup-api/v2/stellar/notifications/pull" enabled="true">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -5456,7 +5458,7 @@ Content-Type: application/json&#xd;
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="User-Agent" elementType="Header">
                     <stringProp name="Header.name">User-Agent</stringProp>
@@ -5507,7 +5509,7 @@ Content-Type: application/json&#xd;
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.12 GET /starmeup-api/v2/stellar/notifications/pull">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.12 GET /starmeup-api/v2/stellar/notifications/pull" enabled="true">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -5572,7 +5574,7 @@ Content-Type: application/json&#xd;
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="User-Agent" elementType="Header">
                     <stringProp name="Header.name">User-Agent</stringProp>
@@ -5623,7 +5625,7 @@ Content-Type: application/json&#xd;
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.13 POST /os-member/api/v3/members?o=SMU_FEEDBACK_WEB&amp;v=2">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.13 POST /os-member/api/v3/members?o=SMU_FEEDBACK_WEB&amp;v=2" enabled="true">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -5644,7 +5646,7 @@ Content-Type: application/json&#xd;
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="User-Agent" elementType="Header">
                     <stringProp name="Header.name">User-Agent</stringProp>
@@ -5694,7 +5696,7 @@ Content-Type: application/json&#xd;
                 <stringProp name="TestPlan.comments">Created from cURL on 2025-11-11T14:56:48.955919</stringProp>
               </HeaderManager>
               <hashTree/>
-              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="recipientIdsId_JSON Extractor">
+              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="recipientIdsId_JSON Extractor" enabled="true">
                 <stringProp name="JSONPostProcessor.referenceNames">recipientIdsId</stringProp>
                 <stringProp name="JSONPostProcessor.jsonPathExprs">$.[*].id</stringProp>
                 <stringProp name="JSONPostProcessor.match_numbers">0</stringProp>
@@ -5702,7 +5704,7 @@ Content-Type: application/json&#xd;
               </JSONPostProcessor>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.14 POST /betterme/api/feedbacks/requests/onbehalf?o=SMU_FEEDBACK_WEB&amp;v=2">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.14 POST /betterme/api/feedbacks/requests/onbehalf?o=SMU_FEEDBACK_WEB&amp;v=2" enabled="true">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -5723,7 +5725,7 @@ Content-Type: application/json&#xd;
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="User-Agent" elementType="Header">
                     <stringProp name="Header.name">User-Agent</stringProp>
@@ -5778,7 +5780,7 @@ Content-Type: application/json&#xd;
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.15 POST /betterme/api/v1/my-team/distribution?o=SMU_FEEDBACK_WEB&amp;v=2">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.15 POST /betterme/api/v1/my-team/distribution?o=SMU_FEEDBACK_WEB&amp;v=2" enabled="true">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -5799,7 +5801,7 @@ Content-Type: application/json&#xd;
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="User-Agent" elementType="Header">
                     <stringProp name="Header.name">User-Agent</stringProp>
@@ -5850,7 +5852,7 @@ Content-Type: application/json&#xd;
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.16 POST /os-member/api/v1/community/member/my-team/performance">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.16 POST /os-member/api/v1/community/member/my-team/performance" enabled="true">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -5871,7 +5873,7 @@ Content-Type: application/json&#xd;
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="User-Agent" elementType="Header">
                     <stringProp name="Header.name">User-Agent</stringProp>
@@ -5922,7 +5924,7 @@ Content-Type: application/json&#xd;
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.17 GET /starmeup-api/v2/stellar/notifications/pull">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.17 GET /starmeup-api/v2/stellar/notifications/pull" enabled="true">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -5987,7 +5989,7 @@ Content-Type: application/json&#xd;
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="User-Agent" elementType="Header">
                     <stringProp name="Header.name">User-Agent</stringProp>
@@ -6038,7 +6040,7 @@ Content-Type: application/json&#xd;
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="16.18 GET /starmeup-api/v2/stellar/notifications/pull">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="16.18 GET /starmeup-api/v2/stellar/notifications/pull" enabled="true">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -6103,7 +6105,7 @@ Content-Type: application/json&#xd;
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="User-Agent" elementType="Header">
                     <stringProp name="Header.name">User-Agent</stringProp>
@@ -6160,12 +6162,12 @@ Content-Type: application/json&#xd;
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
-          <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="thinkTime Gaussian Random Timer">
+          <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="thinkTime Gaussian Random Timer" enabled="true">
             <stringProp name="ConstantTimer.delay">${constantDelay}</stringProp>
             <stringProp name="RandomTimer.range">${thinkTime}</stringProp>
           </GaussianRandomTimer>
           <hashTree/>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.0 POST /os-member/api/v1/community/member/my-team/performanc">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.0 POST /os-member/api/v1/community/member/my-team/performanc" enabled="true">
             <stringProp name="TestPlan.comments">Created from cURL on 2025-11-12T12:48:38.9614641</stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -6186,7 +6188,7 @@ Content-Type: application/json&#xd;
             <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="accept" elementType="Header">
                   <stringProp name="Header.name">accept</stringProp>
@@ -6244,28 +6246,28 @@ Content-Type: application/json&#xd;
               <stringProp name="TestPlan.comments">Created from cURL on 2025-11-12T12:48:38.9614641</stringProp>
             </HeaderManager>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="evalEvaluationStatus_JSON Extractor">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="evalEvaluationStatus_JSON Extractor" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">evalEvaluationStatus</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.result.list[2].evaluationStatus.label</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">evalEvaluationStatus_NotFound</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="userId_JSON Extractor">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="userId_JSON Extractor" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">userId</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.result.list[2].user.id</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">userId_NotFound</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="userIdentification_JSON Extractor">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="userIdentification_JSON Extractor" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">userIdentification</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.result.list[2].user.identification</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">userIdentification_NotFound</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="valuationStatusId_JSON Extractor">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="valuationStatusId_JSON Extractor" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">valuationStatusId</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.result.list[2].evaluationStatus.id</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
@@ -6280,13 +6282,13 @@ Content-Type: application/json&#xd;
             </JSONPostProcessor>
             <hashTree/>
           </hashTree>
-          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="userId_Found If Controller">
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="userId_Found If Controller" enabled="true">
             <stringProp name="IfController.condition">${__jexl3(&quot;${userId}&quot; != &quot;userId_NotFound&quot;)}</stringProp>
             <boolProp name="IfController.evaluateAll">false</boolProp>
             <boolProp name="IfController.useExpression">true</boolProp>
           </IfController>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.1 GET /os-member/api/v2/community/members/roles">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.1 GET /os-member/api/v2/community/members/roles" enabled="true">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -6316,7 +6318,7 @@ Content-Type: application/json&#xd;
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="User-Agent" elementType="Header">
                     <stringProp name="Header.name">User-Agent</stringProp>
@@ -6363,7 +6365,7 @@ Content-Type: application/json&#xd;
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.2 GET /betterme/api/v1/alerts">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.2 GET /betterme/api/v1/alerts" enabled="true">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -6414,7 +6416,7 @@ Content-Type: application/json&#xd;
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="User-Agent" elementType="Header">
                     <stringProp name="Header.name">User-Agent</stringProp>
@@ -6461,7 +6463,7 @@ Content-Type: application/json&#xd;
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.3 GET /betterme/api/communities/820">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.3 GET /betterme/api/communities/820" enabled="true">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -6491,7 +6493,7 @@ Content-Type: application/json&#xd;
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="User-Agent" elementType="Header">
                     <stringProp name="Header.name">User-Agent</stringProp>
@@ -6538,19 +6540,19 @@ Content-Type: application/json&#xd;
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <IfController guiclass="IfControllerPanel" testclass="IfController" testname="${evalEvaluationStatus}&quot; != &quot;Completada&quot;) If Controller">
+            <IfController guiclass="IfControllerPanel" testclass="IfController" testname="${evalEvaluationStatus}&quot; != &quot;Completada&quot;) If Controller" enabled="true">
               <stringProp name="IfController.condition">${__jexl3(&quot;${evalEvaluationStatus}&quot; != &quot;Completada&quot;)}</stringProp>
               <boolProp name="IfController.evaluateAll">false</boolProp>
               <boolProp name="IfController.useExpression">true</boolProp>
             </IfController>
             <hashTree>
-              <IfController guiclass="IfControllerPanel" testclass="IfController" testname="7. Nueva {evalEvaluationStatus}&quot; != &quot;En curso&quot; If Controller">
+              <IfController guiclass="IfControllerPanel" testclass="IfController" testname="7. Nueva {evalEvaluationStatus}&quot; != &quot;En curso&quot; If Controller" enabled="true">
                 <stringProp name="IfController.condition">${__jexl3(&quot;${evalEvaluationStatus}&quot; != &quot;En curso&quot;)}</stringProp>
                 <boolProp name="IfController.evaluateAll">false</boolProp>
                 <boolProp name="IfController.useExpression">true</boolProp>
               </IfController>
               <hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.4 GET /betterme/api/users/${identification}">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.4 GET /betterme/api/users/${identification}" enabled="true">
                   <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -6580,7 +6582,7 @@ Content-Type: application/json&#xd;
                   <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                 </HTTPSamplerProxy>
                 <hashTree>
-                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                     <collectionProp name="HeaderManager.headers">
                       <elementProp name="User-Agent" elementType="Header">
                         <stringProp name="Header.name">User-Agent</stringProp>
@@ -6626,7 +6628,7 @@ Content-Type: application/json&#xd;
                     <stringProp name="TestPlan.comments">Created from cURL on 2025-11-12T12:20:38.2148441</stringProp>
                   </HeaderManager>
                   <hashTree/>
-                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="performanceId_JSON Extractor">
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="performanceId_JSON Extractor" enabled="true">
                     <stringProp name="JSONPostProcessor.referenceNames">performanceId</stringProp>
                     <stringProp name="JSONPostProcessor.jsonPathExprs">$.result.id</stringProp>
                     <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
@@ -6634,7 +6636,7 @@ Content-Type: application/json&#xd;
                   </JSONPostProcessor>
                   <hashTree/>
                 </hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.5 GET /os-member/api/v1/community/members/{userId}">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.5 GET /os-member/api/v1/community/members/{userId}" enabled="true">
                   <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -6664,7 +6666,7 @@ Content-Type: application/json&#xd;
                   <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                 </HTTPSamplerProxy>
                 <hashTree>
-                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                     <collectionProp name="HeaderManager.headers">
                       <elementProp name="User-Agent" elementType="Header">
                         <stringProp name="Header.name">User-Agent</stringProp>
@@ -6710,7 +6712,7 @@ Content-Type: application/json&#xd;
                     <stringProp name="TestPlan.comments">Created from cURL on 2025-11-12T12:30:17.0281943</stringProp>
                   </HeaderManager>
                   <hashTree/>
-                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="relatedTo_JSON Extractor">
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="relatedTo_JSON Extractor" enabled="true">
                     <stringProp name="JSONPostProcessor.referenceNames">relatedTo</stringProp>
                     <stringProp name="JSONPostProcessor.jsonPathExprs">$.result.properties.uid</stringProp>
                     <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
@@ -6718,7 +6720,7 @@ Content-Type: application/json&#xd;
                   </JSONPostProcessor>
                   <hashTree/>
                 </hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.6 GET /betterme/api/survey/type/userId/tier">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.6 GET /betterme/api/survey/type/userId/tier" enabled="true">
                   <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -6755,7 +6757,7 @@ Content-Type: application/json&#xd;
                   <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                 </HTTPSamplerProxy>
                 <hashTree>
-                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                     <collectionProp name="HeaderManager.headers">
                       <elementProp name="User-Agent" elementType="Header">
                         <stringProp name="Header.name">User-Agent</stringProp>
@@ -6798,7 +6800,7 @@ Content-Type: application/json&#xd;
                   </HeaderManager>
                   <hashTree/>
                 </hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.7 GET /betterme/api/v1/survey/TALENT_MATRIX_V1">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.7 GET /betterme/api/v1/survey/TALENT_MATRIX_V1" enabled="true">
                   <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -6828,7 +6830,7 @@ Content-Type: application/json&#xd;
                   <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                 </HTTPSamplerProxy>
                 <hashTree>
-                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                     <collectionProp name="HeaderManager.headers">
                       <elementProp name="User-Agent" elementType="Header">
                         <stringProp name="Header.name">User-Agent</stringProp>
@@ -6870,21 +6872,21 @@ Content-Type: application/json&#xd;
                     <stringProp name="TestPlan.comments">Created from cURL on 2025-11-12T12:26:54.1934102</stringProp>
                   </HeaderManager>
                   <hashTree/>
-                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="questionId_JSON Extractor">
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="questionId_JSON Extractor" enabled="true">
                     <stringProp name="JSONPostProcessor.referenceNames">questionId</stringProp>
                     <stringProp name="JSONPostProcessor.jsonPathExprs">$.result[*].id</stringProp>
                     <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
                     <stringProp name="JSONPostProcessor.defaultValues">questionId_NotFound</stringProp>
                   </JSONPostProcessor>
                   <hashTree/>
-                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="ratingId_0_JSON Extractor">
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="ratingId_0_JSON Extractor" enabled="true">
                     <stringProp name="JSONPostProcessor.referenceNames">ratingId_0</stringProp>
                     <stringProp name="JSONPostProcessor.jsonPathExprs">$.result[0].ratings[*].id</stringProp>
                     <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
                     <stringProp name="JSONPostProcessor.defaultValues">ratingId_0_NotFound</stringProp>
                   </JSONPostProcessor>
                   <hashTree/>
-                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="ratingId_1_JSON Extractor">
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="ratingId_1_JSON Extractor" enabled="true">
                     <stringProp name="JSONPostProcessor.referenceNames">ratingId_1</stringProp>
                     <stringProp name="JSONPostProcessor.jsonPathExprs">$.result[1].ratings[*].id</stringProp>
                     <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
@@ -6892,7 +6894,7 @@ Content-Type: application/json&#xd;
                   </JSONPostProcessor>
                   <hashTree/>
                 </hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.8  GET /os-member/api/v1/community/members/{userId}">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.8  GET /os-member/api/v1/community/members/{userId}" enabled="true">
                   <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -6922,7 +6924,7 @@ Content-Type: application/json&#xd;
                   <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                 </HTTPSamplerProxy>
                 <hashTree>
-                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                     <collectionProp name="HeaderManager.headers">
                       <elementProp name="User-Agent" elementType="Header">
                         <stringProp name="Header.name">User-Agent</stringProp>
@@ -6968,7 +6970,7 @@ Content-Type: application/json&#xd;
                     <stringProp name="TestPlan.comments">Created from cURL on 2025-11-12T12:30:17.0281943</stringProp>
                   </HeaderManager>
                   <hashTree/>
-                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="relatedTo_JSON Extractor">
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="relatedTo_JSON Extractor" enabled="true">
                     <stringProp name="JSONPostProcessor.referenceNames">relatedTo</stringProp>
                     <stringProp name="JSONPostProcessor.jsonPathExprs">$.result.properties.uid</stringProp>
                     <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
@@ -6976,7 +6978,7 @@ Content-Type: application/json&#xd;
                   </JSONPostProcessor>
                   <hashTree/>
                 </hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.9 GET /betterme/api/v3/evaluations/{userId}/selfevaluation">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.9 GET /betterme/api/v3/evaluations/{userId}/selfevaluation" enabled="true">
                   <stringProp name="TestPlan.comments">Created from cURL on 2025-11-20T14:59:12.1505584</stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -7006,7 +7008,7 @@ Content-Type: application/json&#xd;
                   <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                 </HTTPSamplerProxy>
                 <hashTree>
-                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                     <collectionProp name="HeaderManager.headers">
                       <elementProp name="accept" elementType="Header">
                         <stringProp name="Header.name">accept</stringProp>
@@ -7061,7 +7063,7 @@ Content-Type: application/json&#xd;
                   </HeaderManager>
                   <hashTree/>
                 </hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.10 POST /betterme/api/v1/users/{relatedTo}/feedbacks/ai">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.10 POST /betterme/api/v1/users/{relatedTo}/feedbacks/ai" enabled="true">
                   <stringProp name="TestPlan.comments">--include --raw --output ignoring; 5155e0de6b3517c3b435bb7167901f9c</stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -7105,7 +7107,7 @@ Content-Type: application/json&#xd;
                   <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                 </HTTPSamplerProxy>
                 <hashTree>
-                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                     <collectionProp name="HeaderManager.headers">
                       <elementProp name="User-Agent" elementType="Header">
                         <stringProp name="Header.name">User-Agent</stringProp>
@@ -7152,7 +7154,7 @@ Content-Type: application/json&#xd;
                   </HeaderManager>
                   <hashTree/>
                 </hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.11.1 POST {ratingId_1} /betterme/api/v2/hypothetical-alerts?o=SMU_FEEDBACK_WEB&amp;v=2">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.11.1 POST {ratingId_1} /betterme/api/v2/hypothetical-alerts?o=SMU_FEEDBACK_WEB&amp;v=2" enabled="true">
                   <stringProp name="TestPlan.comments">//{&quot;userContext&quot;:{&quot;context&quot;:{&quot;how&quot;:${ratingId_0}},&quot;user&quot;:&quot;${identification}&quot;},&quot;process&quot;:&quot;PERFORMANCE&quot;}</stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -7173,7 +7175,7 @@ Content-Type: application/json&#xd;
                   <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                 </HTTPSamplerProxy>
                 <hashTree>
-                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                     <collectionProp name="HeaderManager.headers">
                       <elementProp name="accept" elementType="Header">
                         <stringProp name="Header.name">accept</stringProp>
@@ -7232,7 +7234,7 @@ Content-Type: application/json&#xd;
                   </HeaderManager>
                   <hashTree/>
                 </hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.11.2 POST  {ratingId_2} /betterme/api/v2/hypothetical-alerts?o=SMU_FEEDBACK_WEB&amp;v=2">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.11.2 POST  {ratingId_2} /betterme/api/v2/hypothetical-alerts?o=SMU_FEEDBACK_WEB&amp;v=2" enabled="true">
                   <stringProp name="TestPlan.comments">//{&quot;userContext&quot;:{&quot;context&quot;:{&quot;what&quot;:${ratingId_1}},&quot;user&quot;:&quot;${identification}&quot;},&quot;process&quot;:&quot;PERFORMANCE&quot;}</stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -7253,7 +7255,7 @@ Content-Type: application/json&#xd;
                   <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                 </HTTPSamplerProxy>
                 <hashTree>
-                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                     <collectionProp name="HeaderManager.headers">
                       <elementProp name="accept" elementType="Header">
                         <stringProp name="Header.name">accept</stringProp>
@@ -7312,7 +7314,7 @@ Content-Type: application/json&#xd;
                   </HeaderManager>
                   <hashTree/>
                 </hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.12 GET /betterme/api/v1/survey/EVALUATION">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.12 GET /betterme/api/v1/survey/EVALUATION" enabled="true">
                   <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -7342,7 +7344,7 @@ Content-Type: application/json&#xd;
                   <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                 </HTTPSamplerProxy>
                 <hashTree>
-                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                     <collectionProp name="HeaderManager.headers">
                       <elementProp name="User-Agent" elementType="Header">
                         <stringProp name="Header.name">User-Agent</stringProp>
@@ -7388,7 +7390,7 @@ Content-Type: application/json&#xd;
                     <stringProp name="TestPlan.comments">Created from cURL on 2025-11-24T12:26:57.5172273</stringProp>
                   </HeaderManager>
                   <hashTree/>
-                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="postQuestionId_JSON Extractor">
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="postQuestionId_JSON Extractor" enabled="true">
                     <stringProp name="JSONPostProcessor.referenceNames">postQuestionId</stringProp>
                     <stringProp name="JSONPostProcessor.jsonPathExprs">$.result[0].id</stringProp>
                     <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
@@ -7396,7 +7398,7 @@ Content-Type: application/json&#xd;
                   </JSONPostProcessor>
                   <hashTree/>
                 </hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.13 GET /betterme/api/v3/goals/team/users/{relatedTo}/goals">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.13 GET /betterme/api/v3/goals/team/users/{relatedTo}/goals" enabled="true">
                   <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -7447,7 +7449,7 @@ Content-Type: application/json&#xd;
                   <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                 </HTTPSamplerProxy>
                 <hashTree>
-                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                     <collectionProp name="HeaderManager.headers">
                       <elementProp name="User-Agent" elementType="Header">
                         <stringProp name="Header.name">User-Agent</stringProp>
@@ -7494,7 +7496,7 @@ Content-Type: application/json&#xd;
                   </HeaderManager>
                   <hashTree/>
                 </hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.14 GET /notifications/v3/i18n/resources">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.14 GET /notifications/v3/i18n/resources" enabled="true">
                   <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -7531,7 +7533,7 @@ Content-Type: application/json&#xd;
                   <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                 </HTTPSamplerProxy>
                 <hashTree>
-                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                     <collectionProp name="HeaderManager.headers">
                       <elementProp name="User-Agent" elementType="Header">
                         <stringProp name="Header.name">User-Agent</stringProp>
@@ -7578,7 +7580,7 @@ Content-Type: application/json&#xd;
                   </HeaderManager>
                   <hashTree/>
                 </hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.15 GET /betterme/api/v1/users/talent-card">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.15 GET /betterme/api/v1/users/talent-card" enabled="true">
                   <stringProp name="TestPlan.comments">--include --raw --output ignoring;  55e0de6b3517c3b435bb7167901f9c51</stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -7622,7 +7624,7 @@ Content-Type: application/json&#xd;
                   <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                 </HTTPSamplerProxy>
                 <hashTree>
-                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                     <collectionProp name="HeaderManager.headers">
                       <elementProp name="User-Agent" elementType="Header">
                         <stringProp name="Header.name">User-Agent</stringProp>
@@ -7669,7 +7671,7 @@ Content-Type: application/json&#xd;
                   </HeaderManager>
                   <hashTree/>
                 </hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.16 POST /ai-api/api/v1/geai?o=SMU_FEEDBACK_WEB&amp;v=2">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.16 POST /ai-api/api/v1/geai?o=SMU_FEEDBACK_WEB&amp;v=2" enabled="true">
                   <stringProp name="TestPlan.comments">Created from cURL on 2025-11-25T13:27:00.1445925</stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -7690,7 +7692,7 @@ Content-Type: application/json&#xd;
                   <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                 </HTTPSamplerProxy>
                 <hashTree>
-                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                     <collectionProp name="HeaderManager.headers">
                       <elementProp name="accept" elementType="Header">
                         <stringProp name="Header.name">accept</stringProp>
@@ -7749,18 +7751,18 @@ Content-Type: application/json&#xd;
                   </HeaderManager>
                   <hashTree/>
                 </hashTree>
-                <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="userTime Gaussian Random Timer">
+                <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="userTime Gaussian Random Timer" enabled="true">
                   <stringProp name="ConstantTimer.delay">300</stringProp>
                   <stringProp name="RandomTimer.range">${userTime}</stringProp>
                 </GaussianRandomTimer>
                 <hashTree/>
-                <IfController guiclass="IfControllerPanel" testclass="IfController" testname="{postQuestionId}&quot; == 1757) If Controller">
+                <IfController guiclass="IfControllerPanel" testclass="IfController" testname="{postQuestionId}&quot; == 1757) If Controller" enabled="true">
                   <stringProp name="IfController.condition">${__jexl3(&quot;${postQuestionId}&quot; == 1757)}</stringProp>
                   <boolProp name="IfController.evaluateAll">false</boolProp>
                   <boolProp name="IfController.useExpression">true</boolProp>
                 </IfController>
                 <hashTree>
-                  <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.17 POST ${user} /betterme/api/v3/evaluations?o=SMU_FEEDBACK_WEB&amp;v=2">
+                  <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.17 POST ${user} /betterme/api/v3/evaluations?o=SMU_FEEDBACK_WEB&amp;v=2" enabled="true">
                     <stringProp name="TestPlan.comments">${postQuestionId}</stringProp>
                     <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                     <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -7781,7 +7783,7 @@ Content-Type: application/json&#xd;
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                   </HTTPSamplerProxy>
                   <hashTree>
-                    <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                    <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                       <collectionProp name="HeaderManager.headers">
                         <elementProp name="accept" elementType="Header">
                           <stringProp name="Header.name">accept</stringProp>
@@ -7841,13 +7843,13 @@ Content-Type: application/json&#xd;
                     <hashTree/>
                   </hashTree>
                 </hashTree>
-                <IfController guiclass="IfControllerPanel" testclass="IfController" testname="&quot;${postQuestionId}&quot; == 1758) If Controller">
+                <IfController guiclass="IfControllerPanel" testclass="IfController" testname="&quot;${postQuestionId}&quot; == 1758) If Controller" enabled="true">
                   <stringProp name="IfController.condition">${__jexl3(&quot;${postQuestionId}&quot; == 1758)}</stringProp>
                   <boolProp name="IfController.evaluateAll">false</boolProp>
                   <boolProp name="IfController.useExpression">true</boolProp>
                 </IfController>
                 <hashTree>
-                  <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.17 POST ${user} /betterme/api/v3/evaluations?o=SMU_FEEDBACK_WEB&amp;v=2">
+                  <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.17 POST ${user} /betterme/api/v3/evaluations?o=SMU_FEEDBACK_WEB&amp;v=2" enabled="true">
                     <stringProp name="TestPlan.comments">${postQuestionId}</stringProp>
                     <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                     <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -7868,7 +7870,7 @@ Content-Type: application/json&#xd;
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                   </HTTPSamplerProxy>
                   <hashTree>
-                    <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                    <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                       <collectionProp name="HeaderManager.headers">
                         <elementProp name="accept" elementType="Header">
                           <stringProp name="Header.name">accept</stringProp>
@@ -7929,13 +7931,13 @@ Content-Type: application/json&#xd;
                   </hashTree>
                 </hashTree>
               </hashTree>
-              <IfController guiclass="IfControllerPanel" testclass="IfController" testname="7 Editar  {evalEvaluationStatus}&quot; == &quot;En curso&quot;) If Controller ">
+              <IfController guiclass="IfControllerPanel" testclass="IfController" testname="7 Editar  {evalEvaluationStatus}&quot; == &quot;En curso&quot;) If Controller " enabled="true">
                 <stringProp name="IfController.condition">${__jexl3(&quot;${evalEvaluationStatus}&quot; == &quot;En curso&quot;)}</stringProp>
                 <boolProp name="IfController.evaluateAll">false</boolProp>
                 <boolProp name="IfController.useExpression">true</boolProp>
               </IfController>
               <hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.4 GET /os-collaboration-service/api/v1/filters">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.4 GET /os-collaboration-service/api/v1/filters" enabled="true">
                   <stringProp name="TestPlan.comments">962735 </stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -7986,7 +7988,7 @@ Content-Type: application/json&#xd;
                   <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                 </HTTPSamplerProxy>
                 <hashTree>
-                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                     <collectionProp name="HeaderManager.headers">
                       <elementProp name="User-Agent" elementType="Header">
                         <stringProp name="Header.name">User-Agent</stringProp>
@@ -8037,7 +8039,7 @@ Content-Type: application/json&#xd;
                   </HeaderManager>
                   <hashTree/>
                 </hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.5 GET /betterme/api/users/{identification}">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.5 GET /betterme/api/users/{identification}" enabled="true">
                   <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -8067,7 +8069,7 @@ Content-Type: application/json&#xd;
                   <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                 </HTTPSamplerProxy>
                 <hashTree>
-                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                     <collectionProp name="HeaderManager.headers">
                       <elementProp name="User-Agent" elementType="Header">
                         <stringProp name="Header.name">User-Agent</stringProp>
@@ -8113,7 +8115,7 @@ Content-Type: application/json&#xd;
                     <stringProp name="TestPlan.comments">Created from cURL on 2025-11-12T12:20:38.2148441</stringProp>
                   </HeaderManager>
                   <hashTree/>
-                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="performanceId_JSON Extractor">
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="performanceId_JSON Extractor" enabled="true">
                     <stringProp name="JSONPostProcessor.referenceNames">performanceId</stringProp>
                     <stringProp name="JSONPostProcessor.jsonPathExprs">$.result.id</stringProp>
                     <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
@@ -8121,7 +8123,7 @@ Content-Type: application/json&#xd;
                   </JSONPostProcessor>
                   <hashTree/>
                 </hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.6 GET /betterme/api/periods">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.6 GET /betterme/api/periods" enabled="true">
                   <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -8158,7 +8160,7 @@ Content-Type: application/json&#xd;
                   <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                 </HTTPSamplerProxy>
                 <hashTree>
-                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                     <collectionProp name="HeaderManager.headers">
                       <elementProp name="User-Agent" elementType="Header">
                         <stringProp name="Header.name">User-Agent</stringProp>
@@ -8205,7 +8207,7 @@ Content-Type: application/json&#xd;
                   </HeaderManager>
                   <hashTree/>
                 </hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.7 GET /betterme/api/v1/survey/TALENT_MATRIX_V1">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.7 GET /betterme/api/v1/survey/TALENT_MATRIX_V1" enabled="true">
                   <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -8235,7 +8237,7 @@ Content-Type: application/json&#xd;
                   <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                 </HTTPSamplerProxy>
                 <hashTree>
-                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                     <collectionProp name="HeaderManager.headers">
                       <elementProp name="User-Agent" elementType="Header">
                         <stringProp name="Header.name">User-Agent</stringProp>
@@ -8277,21 +8279,21 @@ Content-Type: application/json&#xd;
                     <stringProp name="TestPlan.comments">Created from cURL on 2025-11-12T12:26:54.1934102</stringProp>
                   </HeaderManager>
                   <hashTree/>
-                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="questionId_JSON Extractor">
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="questionId_JSON Extractor" enabled="true">
                     <stringProp name="JSONPostProcessor.referenceNames">questionId</stringProp>
                     <stringProp name="JSONPostProcessor.jsonPathExprs">$.result[*].id</stringProp>
                     <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
                     <stringProp name="JSONPostProcessor.defaultValues">questionId_NotFound</stringProp>
                   </JSONPostProcessor>
                   <hashTree/>
-                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="ratingId_0_JSON Extractor">
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="ratingId_0_JSON Extractor" enabled="true">
                     <stringProp name="JSONPostProcessor.referenceNames">ratingId_0</stringProp>
                     <stringProp name="JSONPostProcessor.jsonPathExprs">$.result[0].ratings[*].id</stringProp>
                     <stringProp name="JSONPostProcessor.match_numbers">0</stringProp>
                     <stringProp name="JSONPostProcessor.defaultValues">ratingId_0_NotFound</stringProp>
                   </JSONPostProcessor>
                   <hashTree/>
-                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="ratingId_1_JSON Extractor">
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="ratingId_1_JSON Extractor" enabled="true">
                     <stringProp name="JSONPostProcessor.referenceNames">ratingId_1</stringProp>
                     <stringProp name="JSONPostProcessor.jsonPathExprs">$.result[1].ratings[*].id</stringProp>
                     <stringProp name="JSONPostProcessor.match_numbers">0</stringProp>
@@ -8299,7 +8301,7 @@ Content-Type: application/json&#xd;
                   </JSONPostProcessor>
                   <hashTree/>
                 </hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.6 GET /betterme/api/periods/PERFORMANCE">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.6 GET /betterme/api/periods/PERFORMANCE" enabled="true">
                   <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -8329,7 +8331,7 @@ Content-Type: application/json&#xd;
                   <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                 </HTTPSamplerProxy>
                 <hashTree>
-                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                     <collectionProp name="HeaderManager.headers">
                       <elementProp name="User-Agent" elementType="Header">
                         <stringProp name="Header.name">User-Agent</stringProp>
@@ -8380,7 +8382,7 @@ Content-Type: application/json&#xd;
                   </HeaderManager>
                   <hashTree/>
                 </hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.7 POST /betterme/api/v1/my-team/distribution?o=SMU_FEEDBACK_WEB&amp;v=2">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.7 POST /betterme/api/v1/my-team/distribution?o=SMU_FEEDBACK_WEB&amp;v=2" enabled="true">
                   <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -8401,7 +8403,7 @@ Content-Type: application/json&#xd;
                   <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                 </HTTPSamplerProxy>
                 <hashTree>
-                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                     <collectionProp name="HeaderManager.headers">
                       <elementProp name="User-Agent" elementType="Header">
                         <stringProp name="Header.name">User-Agent</stringProp>
@@ -8452,7 +8454,7 @@ Content-Type: application/json&#xd;
                   </HeaderManager>
                   <hashTree/>
                 </hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.8 GET /betterme/api/v1/survey/TALENT_MATRIX_V1">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.8 GET /betterme/api/v1/survey/TALENT_MATRIX_V1" enabled="true">
                   <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -8482,7 +8484,7 @@ Content-Type: application/json&#xd;
                   <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                 </HTTPSamplerProxy>
                 <hashTree>
-                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                     <collectionProp name="HeaderManager.headers">
                       <elementProp name="User-Agent" elementType="Header">
                         <stringProp name="Header.name">User-Agent</stringProp>
@@ -8524,14 +8526,14 @@ Content-Type: application/json&#xd;
                     <stringProp name="TestPlan.comments">Created from cURL on 2025-11-12T12:26:54.1934102</stringProp>
                   </HeaderManager>
                   <hashTree/>
-                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="questionId_JSON Extractor">
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="questionId_JSON Extractor" enabled="true">
                     <stringProp name="JSONPostProcessor.referenceNames">questionId</stringProp>
                     <stringProp name="JSONPostProcessor.jsonPathExprs">$.result[*].id</stringProp>
                     <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
                     <stringProp name="JSONPostProcessor.defaultValues">questionId_NotFound</stringProp>
                   </JSONPostProcessor>
                   <hashTree/>
-                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="ratingId_JSON Extractor">
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="ratingId_JSON Extractor" enabled="true">
                     <stringProp name="JSONPostProcessor.referenceNames">ratingId</stringProp>
                     <stringProp name="JSONPostProcessor.jsonPathExprs">$.result[*].ratings[*].id</stringProp>
                     <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
@@ -8539,7 +8541,7 @@ Content-Type: application/json&#xd;
                   </JSONPostProcessor>
                   <hashTree/>
                 </hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.9.1 POST {ratingId_1} /betterme/api/v2/hypothetical-alerts?o=SMU_FEEDBACK_WEB&amp;v=2">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.9.1 POST {ratingId_1} /betterme/api/v2/hypothetical-alerts?o=SMU_FEEDBACK_WEB&amp;v=2" enabled="true">
                   <stringProp name="TestPlan.comments">//{&quot;userContext&quot;:{&quot;context&quot;:{&quot;how&quot;:${ratingId_0}},&quot;user&quot;:&quot;${identification}&quot;},&quot;process&quot;:&quot;PERFORMANCE&quot;}</stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -8560,7 +8562,7 @@ Content-Type: application/json&#xd;
                   <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                 </HTTPSamplerProxy>
                 <hashTree>
-                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                     <collectionProp name="HeaderManager.headers">
                       <elementProp name="accept" elementType="Header">
                         <stringProp name="Header.name">accept</stringProp>
@@ -8619,7 +8621,7 @@ Content-Type: application/json&#xd;
                   </HeaderManager>
                   <hashTree/>
                 </hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.9.2 POST  {ratingId_2} /betterme/api/v2/hypothetical-alerts?o=SMU_FEEDBACK_WEB&amp;v=2">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.9.2 POST  {ratingId_2} /betterme/api/v2/hypothetical-alerts?o=SMU_FEEDBACK_WEB&amp;v=2" enabled="true">
                   <stringProp name="TestPlan.comments">//{&quot;userContext&quot;:{&quot;context&quot;:{&quot;what&quot;:${ratingId_1}},&quot;user&quot;:&quot;${identification}&quot;},&quot;process&quot;:&quot;PERFORMANCE&quot;}</stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -8640,7 +8642,7 @@ Content-Type: application/json&#xd;
                   <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                 </HTTPSamplerProxy>
                 <hashTree>
-                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                     <collectionProp name="HeaderManager.headers">
                       <elementProp name="accept" elementType="Header">
                         <stringProp name="Header.name">accept</stringProp>
@@ -8699,7 +8701,7 @@ Content-Type: application/json&#xd;
                   </HeaderManager>
                   <hashTree/>
                 </hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.10 GET /betterme/api/survey/type/{evalueeId}/tier">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.10 GET /betterme/api/survey/type/{evalueeId}/tier" enabled="true">
                   <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -8736,7 +8738,7 @@ Content-Type: application/json&#xd;
                   <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                 </HTTPSamplerProxy>
                 <hashTree>
-                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                     <collectionProp name="HeaderManager.headers">
                       <elementProp name="User-Agent" elementType="Header">
                         <stringProp name="Header.name">User-Agent</stringProp>
@@ -8779,7 +8781,7 @@ Content-Type: application/json&#xd;
                   </HeaderManager>
                   <hashTree/>
                 </hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.11  GET /os-member/api/v1/community/members/{userId}">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.11  GET /os-member/api/v1/community/members/{userId}" enabled="true">
                   <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -8809,7 +8811,7 @@ Content-Type: application/json&#xd;
                   <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                 </HTTPSamplerProxy>
                 <hashTree>
-                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                     <collectionProp name="HeaderManager.headers">
                       <elementProp name="User-Agent" elementType="Header">
                         <stringProp name="Header.name">User-Agent</stringProp>
@@ -8855,7 +8857,7 @@ Content-Type: application/json&#xd;
                     <stringProp name="TestPlan.comments">Created from cURL on 2025-11-12T12:30:17.0281943</stringProp>
                   </HeaderManager>
                   <hashTree/>
-                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="relatedTo_JSON Extractor">
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="relatedTo_JSON Extractor" enabled="true">
                     <stringProp name="JSONPostProcessor.referenceNames">relatedTo</stringProp>
                     <stringProp name="JSONPostProcessor.jsonPathExprs">$.result.properties.uid</stringProp>
                     <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
@@ -8863,7 +8865,7 @@ Content-Type: application/json&#xd;
                   </JSONPostProcessor>
                   <hashTree/>
                 </hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.12 GET /betterme/api/v3/evaluations/{valuationStatusId}">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.12 GET /betterme/api/v3/evaluations/{valuationStatusId}" enabled="true">
                   <stringProp name="TestPlan.comments">Created from cURL on 2025-11-20T10:33:35.5510094  674376</stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -8893,7 +8895,7 @@ Content-Type: application/json&#xd;
                   <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                 </HTTPSamplerProxy>
                 <hashTree>
-                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                     <collectionProp name="HeaderManager.headers">
                       <elementProp name="accept" elementType="Header">
                         <stringProp name="Header.name">accept</stringProp>
@@ -8947,7 +8949,7 @@ Content-Type: application/json&#xd;
                     <stringProp name="TestPlan.comments">Created from cURL on 2025-11-20T10:33:35.5510094</stringProp>
                   </HeaderManager>
                   <hashTree/>
-                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="questionId_0_JSON Extractor">
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="questionId_0_JSON Extractor" enabled="true">
                     <stringProp name="JSONPostProcessor.referenceNames">questionId_0</stringProp>
                     <stringProp name="JSONPostProcessor.jsonPathExprs">$.result.questions[0].question.id</stringProp>
                     <stringProp name="JSONPostProcessor.match_numbers">0</stringProp>
@@ -8955,7 +8957,7 @@ Content-Type: application/json&#xd;
                   </JSONPostProcessor>
                   <hashTree/>
                 </hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.13 GET /betterme/api/v1/users/talent-card">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.13 GET /betterme/api/v1/users/talent-card" enabled="true">
                   <stringProp name="TestPlan.comments">--include --raw --output ignoring;  55e0de6b3517c3b435bb7167901f9c51</stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -8999,7 +9001,7 @@ Content-Type: application/json&#xd;
                   <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                 </HTTPSamplerProxy>
                 <hashTree>
-                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                     <collectionProp name="HeaderManager.headers">
                       <elementProp name="User-Agent" elementType="Header">
                         <stringProp name="Header.name">User-Agent</stringProp>
@@ -9046,7 +9048,7 @@ Content-Type: application/json&#xd;
                   </HeaderManager>
                   <hashTree/>
                 </hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.14 POST /betterme/api/v1/users/{relatedTo}/feedbacks/ai">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.14 POST /betterme/api/v1/users/{relatedTo}/feedbacks/ai" enabled="true">
                   <stringProp name="TestPlan.comments">--include --raw --output ignoring; 5155e0de6b3517c3b435bb7167901f9c</stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -9090,7 +9092,7 @@ Content-Type: application/json&#xd;
                   <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                 </HTTPSamplerProxy>
                 <hashTree>
-                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                     <collectionProp name="HeaderManager.headers">
                       <elementProp name="User-Agent" elementType="Header">
                         <stringProp name="Header.name">User-Agent</stringProp>
@@ -9137,7 +9139,7 @@ Content-Type: application/json&#xd;
                   </HeaderManager>
                   <hashTree/>
                 </hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.15 GET /betterme/api/v3/goals/team/users/{relatedTo}/goals">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.15 GET /betterme/api/v3/goals/team/users/{relatedTo}/goals" enabled="true">
                   <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -9188,7 +9190,7 @@ Content-Type: application/json&#xd;
                   <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                 </HTTPSamplerProxy>
                 <hashTree>
-                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                     <collectionProp name="HeaderManager.headers">
                       <elementProp name="User-Agent" elementType="Header">
                         <stringProp name="Header.name">User-Agent</stringProp>
@@ -9235,7 +9237,7 @@ Content-Type: application/json&#xd;
                   </HeaderManager>
                   <hashTree/>
                 </hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.16 GET /notifications/v3/i18n/resources">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.16 GET /notifications/v3/i18n/resources" enabled="true">
                   <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -9272,7 +9274,7 @@ Content-Type: application/json&#xd;
                   <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                 </HTTPSamplerProxy>
                 <hashTree>
-                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                     <collectionProp name="HeaderManager.headers">
                       <elementProp name="User-Agent" elementType="Header">
                         <stringProp name="Header.name">User-Agent</stringProp>
@@ -9319,7 +9321,7 @@ Content-Type: application/json&#xd;
                   </HeaderManager>
                   <hashTree/>
                 </hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.17 GET /betterme/api/v1/survey/EVALUATION">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.17 GET /betterme/api/v1/survey/EVALUATION" enabled="true">
                   <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -9349,7 +9351,7 @@ Content-Type: application/json&#xd;
                   <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                 </HTTPSamplerProxy>
                 <hashTree>
-                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                     <collectionProp name="HeaderManager.headers">
                       <elementProp name="User-Agent" elementType="Header">
                         <stringProp name="Header.name">User-Agent</stringProp>
@@ -9396,12 +9398,12 @@ Content-Type: application/json&#xd;
                   </HeaderManager>
                   <hashTree/>
                 </hashTree>
-                <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="userTime Gaussian Random Timer">
+                <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="userTime Gaussian Random Timer" enabled="true">
                   <stringProp name="ConstantTimer.delay">300</stringProp>
                   <stringProp name="RandomTimer.range">${userTime}</stringProp>
                 </GaussianRandomTimer>
                 <hashTree/>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.18 PUT ${userIdentification} /betterme/api/v3/evaluations/{valuationStatusId}?o=SMU_FEEDBACK_WEB&amp;v=2">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.18 PUT ${userIdentification} /betterme/api/v3/evaluations/{valuationStatusId}?o=SMU_FEEDBACK_WEB&amp;v=2" enabled="true">
                   <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -9422,7 +9424,7 @@ Content-Type: application/json&#xd;
                   <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                 </HTTPSamplerProxy>
                 <hashTree>
-                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                     <collectionProp name="HeaderManager.headers">
                       <elementProp name="User-Agent" elementType="Header">
                         <stringProp name="Header.name">User-Agent</stringProp>
@@ -9481,11 +9483,11 @@ Content-Type: application/json&#xd;
             </hashTree>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="8.0 Sugerir Feedback -- not access" enabled="false">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="8.0 Sugerir Feedback -- not access">
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
-          <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="names CSV Data Set Config">
+          <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="names CSV Data Set Config" enabled="true">
             <stringProp name="filename">names.csv</stringProp>
             <stringProp name="fileEncoding"></stringProp>
             <stringProp name="variableNames">name</stringProp>
@@ -9497,12 +9499,12 @@ Content-Type: application/json&#xd;
             <stringProp name="shareMode">shareMode.all</stringProp>
           </CSVDataSet>
           <hashTree/>
-          <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="thinkTime Gaussian Random Timer">
+          <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="thinkTime Gaussian Random Timer" enabled="true">
             <stringProp name="ConstantTimer.delay">${constantDelay}</stringProp>
             <stringProp name="RandomTimer.range">${thinkTime}</stringProp>
           </GaussianRandomTimer>
           <hashTree/>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="8.1 GET /os-member/api/v2/pending-tasks">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="8.1 GET /os-member/api/v2/pending-tasks" enabled="true">
             <stringProp name="TestPlan.comments">Created from cURL on 2025-11-19T14:55:02.157172</stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -9539,7 +9541,7 @@ Content-Type: application/json&#xd;
             <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="accept" elementType="Header">
                   <stringProp name="Header.name">accept</stringProp>
@@ -9593,7 +9595,7 @@ Content-Type: application/json&#xd;
               <stringProp name="TestPlan.comments">Created from cURL on 2025-11-19T14:55:02.1605567</stringProp>
             </HeaderManager>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="fromUserId_ SON Extractor">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="fromUserId_ SON Extractor" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">fromUserId</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.userId</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
@@ -9601,7 +9603,7 @@ Content-Type: application/json&#xd;
             </JSONPostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="8.2 GET /betterme/api/v1/feedback-suggestion-to-leader">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="8.2 GET /betterme/api/v1/feedback-suggestion-to-leader" enabled="true">
             <stringProp name="TestPlan.comments">Created from cURL on 2025-11-19T14:55:46.3148268</stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -9652,7 +9654,7 @@ Content-Type: application/json&#xd;
             <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="accept" elementType="Header">
                   <stringProp name="Header.name">accept</stringProp>
@@ -9707,7 +9709,7 @@ Content-Type: application/json&#xd;
             </HeaderManager>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="8.3 POST /os-member/api/v3/members?o=SMU_FEEDBACK_WEB&amp;v=2">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="8.3 POST /os-member/api/v3/members?o=SMU_FEEDBACK_WEB&amp;v=2" enabled="true">
             <stringProp name="TestPlan.comments">Created from cURL on 2025-11-19T14:56:26.9330623</stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -9728,7 +9730,7 @@ Content-Type: application/json&#xd;
             <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="accept" elementType="Header">
                   <stringProp name="Header.name">accept</stringProp>
@@ -9786,7 +9788,7 @@ Content-Type: application/json&#xd;
               <stringProp name="TestPlan.comments">Created from cURL on 2025-11-19T14:56:26.9330623</stringProp>
             </HeaderManager>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="suggestedUserIds_ SON Extractor">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="suggestedUserIds_ SON Extractor" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">suggestedUserIds</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.[*].id</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">0</stringProp>
@@ -9794,7 +9796,7 @@ Content-Type: application/json&#xd;
             </JSONPostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="8.4 GET /starmeup-api/v2/stellar/notifications/pull">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="8.4 GET /starmeup-api/v2/stellar/notifications/pull" enabled="true">
             <stringProp name="TestPlan.comments">Created from cURL on 2025-11-19T14:57:14.4565371</stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -9859,7 +9861,7 @@ Content-Type: application/json&#xd;
             <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="accept" elementType="Header">
                   <stringProp name="Header.name">accept</stringProp>
@@ -9918,7 +9920,7 @@ Content-Type: application/json&#xd;
             </HeaderManager>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="8.5 POST  /betterme/api/v1/feedback-suggestion-to-leader?o=SMU_FEEDBACK_WEB&amp;v=2">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="8.5 POST  /betterme/api/v1/feedback-suggestion-to-leader?o=SMU_FEEDBACK_WEB&amp;v=2" enabled="true">
             <stringProp name="TestPlan.comments">Created from cURL on 2025-11-19T14:57:54.4816371</stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -9939,7 +9941,7 @@ Content-Type: application/json&#xd;
             <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="accept" elementType="Header">
                   <stringProp name="Header.name">accept</stringProp>
@@ -9999,7 +10001,7 @@ Content-Type: application/json&#xd;
             <hashTree/>
           </hashTree>
         </hashTree>
-        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler">
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
           <boolProp name="displayJMeterProperties">false</boolProp>
           <boolProp name="displayJMeterVariables">true</boolProp>
           <boolProp name="displaySystemProperties">false</boolProp>
@@ -14276,7 +14278,7 @@ Content-Type: application/json&#xd;
           </hashTree>
         </hashTree>
       </hashTree>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
@@ -14313,7 +14315,7 @@ Content-Type: application/json&#xd;
         <stringProp name="filename"></stringProp>
       </ResultCollector>
       <hashTree/>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="ERROR View Results Tree">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="ERROR View Results Tree" enabled="false">
         <boolProp name="ResultCollector.error_logging">true</boolProp>
         <objProp>
           <name>saveConfig</name>
@@ -14350,7 +14352,7 @@ Content-Type: application/json&#xd;
         <stringProp name="filename"></stringProp>
       </ResultCollector>
       <hashTree/>
-      <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report">
+      <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report" enabled="false">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
@@ -14387,7 +14389,7 @@ Content-Type: application/json&#xd;
         <stringProp name="filename"></stringProp>
       </ResultCollector>
       <hashTree/>
-      <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="Backend Listener" enabled="false">
+      <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="Backend Listener">
         <elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments">
           <collectionProp name="Arguments.arguments">
             <elementProp name="influxdbMetricsSender" elementType="Argument">
