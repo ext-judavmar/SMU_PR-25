@@ -121,17 +121,17 @@
           </elementProp>
           <elementProp name="virtualUsers" elementType="Argument">
             <stringProp name="Argument.name">virtualUsers</stringProp>
-            <stringProp name="Argument.value">${__P(virtualUsers,1)}</stringProp>
+            <stringProp name="Argument.value">${__P(virtualUsers,30)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="rampUp" elementType="Argument">
             <stringProp name="Argument.name">rampUp</stringProp>
-            <stringProp name="Argument.value">${__P(rampUp,1)}</stringProp>
+            <stringProp name="Argument.value">${__P(rampUp,180)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="testTime" elementType="Argument">
             <stringProp name="Argument.name">testTime</stringProp>
-            <stringProp name="Argument.value">${__P(testTime,1)}</stringProp>
+            <stringProp name="Argument.value">${__P(testTime,900)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="timestamp" elementType="Argument">
@@ -168,7 +168,7 @@
         <stringProp name="TestPlan.comments">talent-mercadolibre-beta.starmeup.com</stringProp>
       </Arguments>
       <hashTree/>
-      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="BETA - CSV Data Set Config" enabled="true">
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="BETA - CSV Data Set Config" enabled="false">
         <stringProp name="filename">Beta_dataset_smu_pr-25.csv</stringProp>
         <stringProp name="fileEncoding"></stringProp>
         <stringProp name="variableNames">user,password,identification</stringProp>
@@ -180,8 +180,8 @@
         <stringProp name="shareMode">shareMode.all</stringProp>
       </CSVDataSet>
       <hashTree/>
-      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="BETA - LiderName - CSV Data Set Config" enabled="false">
-        <stringProp name="filename">Beta-liderName.csv</stringProp>
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="BETA - Evaluation - CSV Data Set Config">
+        <stringProp name="filename">Beta_SMU_PR-25-Evaluacion.csv</stringProp>
         <stringProp name="fileEncoding"></stringProp>
         <stringProp name="variableNames">user,password,identification</stringProp>
         <boolProp name="ignoreFirstLine">true</boolProp>
@@ -204,14 +204,15 @@
         <stringProp name="shareMode">shareMode.all</stringProp>
       </CSVDataSet>
       <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Beta Thread Group -Talent Review" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Beta Thread Group -Talent Review">
         <stringProp name="ThreadGroup.num_threads">${virtualUsers}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampUp}</stringProp>
         <stringProp name="ThreadGroup.duration">${testTime}</stringProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <boolProp name="ThreadGroup.scheduler">true</boolProp>
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
-          <stringProp name="LoopController.loops">1</stringProp>
+          <intProp name="LoopController.loops">-1</intProp>
           <boolProp name="LoopController.continue_forever">false</boolProp>
         </elementProp>
       </ThreadGroup>
@@ -425,7 +426,7 @@
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.4 /auth/v3/sec/authenticateuser?o=SMU_FEEDBACK_WEB&amp;v=1" enabled="true">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.4 /auth/v3/sec/authenticateuser?o=SMU_FEEDBACK_WEB&amp;v=1">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -502,7 +503,8 @@
             </hashTree>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="2.0 SMU_Home" enabled="true">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="2.0 SMU_Home">
+          <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
@@ -1627,7 +1629,7 @@
           </GaussianRandomTimer>
           <hashTree/>
         </hashTree>
-        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="3.0 Edit_self-evaluation  If Controller " enabled="true">
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="3.0 Edit_self-evaluation  If Controller " enabled="false">
           <stringProp name="IfController.condition">${__jexl3(&quot;${evaluationStatus}&quot; == &quot;DRAFT&quot;)}</stringProp>
           <boolProp name="IfController.evaluateAll">false</boolProp>
           <boolProp name="IfController.useExpression">true</boolProp>
@@ -2394,7 +2396,7 @@
               <hashTree/>
             </hashTree>
             <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="userTime Gaussian Random Timer" enabled="true">
-              <stringProp name="ConstantTimer.delay">300</stringProp>
+              <stringProp name="ConstantTimer.delay">${constantDelay}</stringProp>
               <stringProp name="RandomTimer.range">${userTime}</stringProp>
             </GaussianRandomTimer>
             <hashTree/>
@@ -2565,7 +2567,7 @@
             </hashTree>
           </hashTree>
         </hashTree>
-        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="4.0 Do a self-evaluation If Controller " enabled="true">
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="4.0 Do a self-evaluation If Controller " enabled="false">
           <stringProp name="IfController.condition">${__jexl3(&quot;${evaluationStatus}&quot; == &quot;NOT_STARTED&quot; )}</stringProp>
           <boolProp name="IfController.evaluateAll">false</boolProp>
           <boolProp name="IfController.useExpression">true</boolProp>
@@ -3439,7 +3441,7 @@
               <hashTree/>
             </hashTree>
             <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="userTime Gaussian Random Timer" enabled="true">
-              <stringProp name="ConstantTimer.delay">300</stringProp>
+              <stringProp name="ConstantTimer.delay">${constantDelay}</stringProp>
               <stringProp name="RandomTimer.range">${userTime}</stringProp>
             </GaussianRandomTimer>
             <hashTree/>
@@ -3530,7 +3532,7 @@
           </GaussianRandomTimer>
           <hashTree/>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="5.0 Responder Feedback" enabled="true">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="5.0 Responder Feedback" enabled="false">
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
@@ -3654,7 +3656,7 @@
             </JSONPostProcessor>
             <hashTree/>
           </hashTree>
-          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Ther si Feedback - If Controller" enabled="true">
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="There is Feedback - If Controller">
             <stringProp name="IfController.condition">${__jexl3(&quot;${requestId}&quot; != &quot;requestId_NotFound&quot;)}</stringProp>
             <boolProp name="IfController.evaluateAll">false</boolProp>
             <boolProp name="IfController.useExpression">true</boolProp>
@@ -4038,7 +4040,7 @@
               </HeaderManager>
               <hashTree/>
               <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="userTime Gaussian Random Timer" enabled="true">
-                <stringProp name="ConstantTimer.delay">300</stringProp>
+                <stringProp name="ConstantTimer.delay">${constantDelay}</stringProp>
                 <stringProp name="RandomTimer.range">${userTime}</stringProp>
               </GaussianRandomTimer>
               <hashTree/>
@@ -4455,16 +4457,17 @@ Content-Type: application/json&#xd;
             </hashTree>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="6.0 Solicitar Feedback    ">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="6.0 Solicitar Feedback    " enabled="false">
+          <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
-          <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="thinkTime Gaussian Random Timer" enabled="true">
+          <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="thinkTime Gaussian Random Timer">
             <stringProp name="ConstantTimer.delay">${constantDelay}</stringProp>
             <stringProp name="RandomTimer.range">${thinkTime}</stringProp>
           </GaussianRandomTimer>
           <hashTree/>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.1 GET /os-member/api/v2/community/members/roles" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.1 GET /os-member/api/v2/community/members/roles">
             <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -4545,7 +4548,7 @@ Content-Type: application/json&#xd;
             </HeaderManager>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.2 GET /betterme/api/v1/alerts" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.2 GET /betterme/api/v1/alerts">
             <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -4647,7 +4650,7 @@ Content-Type: application/json&#xd;
             </HeaderManager>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.3 POST /betterme/api/v1/my-team/distribution?o=SMU_FEEDBACK_WEB&amp;v=2" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.3 POST /betterme/api/v1/my-team/distribution?o=SMU_FEEDBACK_WEB&amp;v=2">
             <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -4723,7 +4726,7 @@ Content-Type: application/json&#xd;
             </HeaderManager>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.4 POST /os-member/api/v1/community/member/my-team/performanc" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.4 POST /os-member/api/v1/community/member/my-team/performanc">
             <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -4799,7 +4802,7 @@ Content-Type: application/json&#xd;
             </HeaderManager>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.5 GET /betterme/api/users/performance-meli-30073341" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.5 GET /betterme/api/users/performance-meli-30073341">
             <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -4887,7 +4890,7 @@ Content-Type: application/json&#xd;
             </JSONPostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.6 GET /betterme/api/v1/users/38d00928be3f028d0a463852014e680d/feedback-requests" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.6 GET /betterme/api/v1/users/38d00928be3f028d0a463852014e680d/feedback-requests">
             <stringProp name="TestPlan.comments">38d00928be3f028d0a463852014e680d</stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -4971,13 +4974,13 @@ Content-Type: application/json&#xd;
             </JSONPostProcessor>
             <hashTree/>
           </hashTree>
-          <IfController guiclass="IfControllerPanel" testclass="IfController" testname=" Send Feedback Request If Controller" enabled="true">
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname=" Send Feedback Request If Controller">
             <stringProp name="IfController.condition">${__jexl3(&quot;${collaboratorsId}&quot; != &quot;collaboratorsId_NotFound&quot;)}</stringProp>
             <boolProp name="IfController.evaluateAll">false</boolProp>
             <boolProp name="IfController.useExpression">true</boolProp>
           </IfController>
           <hashTree>
-            <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="names CSV Data Set Config" enabled="true">
+            <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="names CSV Data Set Config">
               <stringProp name="filename">names.csv</stringProp>
               <stringProp name="fileEncoding"></stringProp>
               <stringProp name="variableNames">name</stringProp>
@@ -4989,7 +4992,12 @@ Content-Type: application/json&#xd;
               <stringProp name="shareMode">shareMode.all</stringProp>
             </CSVDataSet>
             <hashTree/>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.7 GET /betterme/api/v1/feedback-suggestion-to-leader" enabled="true">
+            <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="thinkTime Gaussian Random Timer">
+              <stringProp name="ConstantTimer.delay">${constantDelay}</stringProp>
+              <stringProp name="RandomTimer.range">${thinkTime}</stringProp>
+            </GaussianRandomTimer>
+            <hashTree/>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.7 GET /betterme/api/v1/feedback-suggestion-to-leader">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -5080,7 +5088,7 @@ Content-Type: application/json&#xd;
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.8 GET /starmeup-api/v2/stellar/notifications/pull" enabled="true">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.8 GET /starmeup-api/v2/stellar/notifications/pull" enabled="false">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -5196,7 +5204,7 @@ Content-Type: application/json&#xd;
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.9 GET /starmeup-api/v2/stellar/languages" enabled="true">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.9 GET /starmeup-api/v2/stellar/languages">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -5277,7 +5285,7 @@ Content-Type: application/json&#xd;
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.10 GET /starmeup-api/v2/stellar/notifications/pull" enabled="true">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.10 GET /starmeup-api/v2/stellar/notifications/pull" enabled="false">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -5393,7 +5401,7 @@ Content-Type: application/json&#xd;
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.11 GET /starmeup-api/v2/stellar/notifications/pull" enabled="true">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.11 GET /starmeup-api/v2/stellar/notifications/pull" enabled="false">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -5509,7 +5517,7 @@ Content-Type: application/json&#xd;
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.12 GET /starmeup-api/v2/stellar/notifications/pull" enabled="true">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.12 GET /starmeup-api/v2/stellar/notifications/pull" enabled="false">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -5625,7 +5633,7 @@ Content-Type: application/json&#xd;
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.13 POST /os-member/api/v3/members?o=SMU_FEEDBACK_WEB&amp;v=2" enabled="true">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.13 POST /os-member/api/v3/members?o=SMU_FEEDBACK_WEB&amp;v=2">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -5704,7 +5712,7 @@ Content-Type: application/json&#xd;
               </JSONPostProcessor>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.14 POST /betterme/api/feedbacks/requests/onbehalf?o=SMU_FEEDBACK_WEB&amp;v=2" enabled="true">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.14 POST /betterme/api/feedbacks/requests/onbehalf?o=SMU_FEEDBACK_WEB&amp;v=2">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -5924,7 +5932,7 @@ Content-Type: application/json&#xd;
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.17 GET /starmeup-api/v2/stellar/notifications/pull" enabled="true">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="6.17 GET /starmeup-api/v2/stellar/notifications/pull" enabled="false">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -6040,7 +6048,7 @@ Content-Type: application/json&#xd;
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="16.18 GET /starmeup-api/v2/stellar/notifications/pull" enabled="true">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="16.18 GET /starmeup-api/v2/stellar/notifications/pull" enabled="false">
               <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -6282,7 +6290,7 @@ Content-Type: application/json&#xd;
             </JSONPostProcessor>
             <hashTree/>
           </hashTree>
-          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="userId_Found If Controller" enabled="true">
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="userId_Found If Controller">
             <stringProp name="IfController.condition">${__jexl3(&quot;${userId}&quot; != &quot;userId_NotFound&quot;)}</stringProp>
             <boolProp name="IfController.evaluateAll">false</boolProp>
             <boolProp name="IfController.useExpression">true</boolProp>
@@ -6546,13 +6554,13 @@ Content-Type: application/json&#xd;
               <boolProp name="IfController.useExpression">true</boolProp>
             </IfController>
             <hashTree>
-              <IfController guiclass="IfControllerPanel" testclass="IfController" testname="7. Nueva {evalEvaluationStatus}&quot; != &quot;En curso&quot; If Controller" enabled="true">
+              <IfController guiclass="IfControllerPanel" testclass="IfController" testname="7. Nueva {evalEvaluationStatus}&quot; != &quot;En curso&quot; If Controller">
                 <stringProp name="IfController.condition">${__jexl3(&quot;${evalEvaluationStatus}&quot; != &quot;En curso&quot;)}</stringProp>
                 <boolProp name="IfController.evaluateAll">false</boolProp>
                 <boolProp name="IfController.useExpression">true</boolProp>
               </IfController>
               <hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.4 GET /betterme/api/users/${identification}" enabled="true">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.4 GET /betterme/api/users/{identification}">
                   <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -7752,17 +7760,17 @@ Content-Type: application/json&#xd;
                   <hashTree/>
                 </hashTree>
                 <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="userTime Gaussian Random Timer" enabled="true">
-                  <stringProp name="ConstantTimer.delay">300</stringProp>
+                  <stringProp name="ConstantTimer.delay">${constantDelay}</stringProp>
                   <stringProp name="RandomTimer.range">${userTime}</stringProp>
                 </GaussianRandomTimer>
                 <hashTree/>
-                <IfController guiclass="IfControllerPanel" testclass="IfController" testname="{postQuestionId}&quot; == 1757) If Controller" enabled="true">
+                <IfController guiclass="IfControllerPanel" testclass="IfController" testname="{postQuestionId}&quot; == 1757) If Controller">
                   <stringProp name="IfController.condition">${__jexl3(&quot;${postQuestionId}&quot; == 1757)}</stringProp>
                   <boolProp name="IfController.evaluateAll">false</boolProp>
                   <boolProp name="IfController.useExpression">true</boolProp>
                 </IfController>
                 <hashTree>
-                  <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.17 POST ${user} /betterme/api/v3/evaluations?o=SMU_FEEDBACK_WEB&amp;v=2" enabled="true">
+                  <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.17 POST  /betterme/api/v3/evaluations?o=SMU_FEEDBACK_WEB&amp;v=2">
                     <stringProp name="TestPlan.comments">${postQuestionId}</stringProp>
                     <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                     <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -7849,7 +7857,7 @@ Content-Type: application/json&#xd;
                   <boolProp name="IfController.useExpression">true</boolProp>
                 </IfController>
                 <hashTree>
-                  <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.17 POST ${user} /betterme/api/v3/evaluations?o=SMU_FEEDBACK_WEB&amp;v=2" enabled="true">
+                  <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.17 POST  /betterme/api/v3/evaluations?o=SMU_FEEDBACK_WEB&amp;v=2">
                     <stringProp name="TestPlan.comments">${postQuestionId}</stringProp>
                     <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                     <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -7931,7 +7939,7 @@ Content-Type: application/json&#xd;
                   </hashTree>
                 </hashTree>
               </hashTree>
-              <IfController guiclass="IfControllerPanel" testclass="IfController" testname="7 Editar  {evalEvaluationStatus}&quot; == &quot;En curso&quot;) If Controller " enabled="true">
+              <IfController guiclass="IfControllerPanel" testclass="IfController" testname="7 Editar  {evalEvaluationStatus}&quot; == &quot;En curso&quot;) If Controller ">
                 <stringProp name="IfController.condition">${__jexl3(&quot;${evalEvaluationStatus}&quot; == &quot;En curso&quot;)}</stringProp>
                 <boolProp name="IfController.evaluateAll">false</boolProp>
                 <boolProp name="IfController.useExpression">true</boolProp>
@@ -9048,7 +9056,7 @@ Content-Type: application/json&#xd;
                   </HeaderManager>
                   <hashTree/>
                 </hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.14 POST /betterme/api/v1/users/{relatedTo}/feedbacks/ai" enabled="true">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.14 POST /betterme/api/v1/users/{relatedTo}/feedbacks/ai">
                   <stringProp name="TestPlan.comments">--include --raw --output ignoring; 5155e0de6b3517c3b435bb7167901f9c</stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -9399,11 +9407,11 @@ Content-Type: application/json&#xd;
                   <hashTree/>
                 </hashTree>
                 <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="userTime Gaussian Random Timer" enabled="true">
-                  <stringProp name="ConstantTimer.delay">300</stringProp>
+                  <stringProp name="ConstantTimer.delay">${constantDelay}</stringProp>
                   <stringProp name="RandomTimer.range">${userTime}</stringProp>
                 </GaussianRandomTimer>
                 <hashTree/>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.18 PUT ${userIdentification} /betterme/api/v3/evaluations/{valuationStatusId}?o=SMU_FEEDBACK_WEB&amp;v=2" enabled="true">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="7.18 PUT /betterme/api/v3/evaluations/{valuationStatusId}?o=SMU_FEEDBACK_WEB&amp;v=2">
                   <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -9483,7 +9491,7 @@ Content-Type: application/json&#xd;
             </hashTree>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="8.0 Sugerir Feedback -- not access">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="8.0 Sugerir Feedback -- not access" enabled="false">
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
