@@ -217,7 +217,7 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <OnceOnlyController guiclass="OnceOnlyControllerGui" testclass="OnceOnlyController" testname=" Login Once Only Controller" enabled="true"/>
+        <OnceOnlyController guiclass="OnceOnlyControllerGui" testclass="OnceOnlyController" testname=" Login Once Only Controller"/>
         <hashTree>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="300 Uniform Random Timer" enabled="true">
             <stringProp name="ConstantTimer.delay">100</stringProp>
@@ -6166,7 +6166,7 @@ Content-Type: application/json&#xd;
             </hashTree>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="7.0  Evaluacion ">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="7.0  Evaluacion " enabled="false">
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
@@ -9491,7 +9491,7 @@ Content-Type: application/json&#xd;
             </hashTree>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="8.0 Sugerir Feedback -- not access" enabled="false">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="8.0 Sugerir Feedback -- not access">
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
