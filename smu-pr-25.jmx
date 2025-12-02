@@ -2210,7 +2210,7 @@
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.7 GET /notifications/v3/i18n/resources" enabled="true">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.7 GET /notifications/v3/i18n/resources" enabled="false">
               <stringProp name="TestPlan.comments">Created from cURL on 2025-10-21T15:38:34.4527261</stringProp>
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2572,7 +2572,7 @@
           <boolProp name="IfController.useExpression">true</boolProp>
         </IfController>
         <hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="4.0 Do a self-evaluation" enabled="true">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="4.0 Do a self-evaluation">
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
           <hashTree>
