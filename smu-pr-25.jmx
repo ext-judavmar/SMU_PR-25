@@ -5,8 +5,6 @@
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
-      <boolProp name="TestPlan.functional_mode">false</boolProp>
-      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
     </TestPlan>
     <hashTree>
       <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager">
@@ -34,17 +32,17 @@
           </elementProp>
           <elementProp name="virtualUsers" elementType="Argument">
             <stringProp name="Argument.name">virtualUsers</stringProp>
-            <stringProp name="Argument.value">${__P(virtualUsers,50)}</stringProp>
+            <stringProp name="Argument.value">${__P(virtualUsers,90)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="rampUp" elementType="Argument">
             <stringProp name="Argument.name">rampUp</stringProp>
-            <stringProp name="Argument.value">${__P(rampUp,300)}</stringProp>
+            <stringProp name="Argument.value">${__P(rampUp,210)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="testTime" elementType="Argument">
             <stringProp name="Argument.name">testTime</stringProp>
-            <stringProp name="Argument.value">${__P(testTime,760)}</stringProp>
+            <stringProp name="Argument.value">${__P(testTime,810)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="timestamp" elementType="Argument">
@@ -98,7 +96,7 @@
         <stringProp name="shareMode">shareMode.all</stringProp>
       </CSVDataSet>
       <hashTree/>
-      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="BETA - prompt - CSV Data Set Config" enabled="true">
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="BETA - prompt - CSV Data Set Config" enabled="false">
         <stringProp name="filename">prompts.csv</stringProp>
         <stringProp name="fileEncoding"></stringProp>
         <stringProp name="variableNames">prompt,content</stringProp>
@@ -110,7 +108,7 @@
         <stringProp name="shareMode">shareMode.all</stringProp>
       </CSVDataSet>
       <hashTree/>
-      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="BETA - Evaluation - CSV Data Set Config" enabled="true">
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="BETA - Evaluation - CSV Data Set Config">
         <stringProp name="filename">Beta_SMU_PR-25-Evaluacion.csv</stringProp>
         <stringProp name="fileEncoding"></stringProp>
         <stringProp name="variableNames">user,password,identification</stringProp>
@@ -28209,7 +28207,7 @@ vars.put(&quot;evaluationStatusId_matchNr&quot;, list.size().toString())</string
             </HeaderManager>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.13 GET /betterme/api/v3/evaluations/{evalueeId}/selfevaluation">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.13 GET /betterme/api/v3/evaluations/{evalueeId}/selfevaluation" enabled="true">
             <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -28675,11 +28673,11 @@ vars.put(&quot;evaluationStatusId_matchNr&quot;, list.size().toString())</string
             </hashTree>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="3.0 Evaluadores Panel" enabled="true">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="3.0 Evaluadores Panel">
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.1 GET /starmeup-api/v2/stellar/notifications/pull">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.1 GET /starmeup-api/v2/stellar/notifications/pull" enabled="true">
             <stringProp name="TestPlan.comments">--include --raw --output ignoring; </stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -29300,7 +29298,7 @@ vars.put(&quot;evaluationStatusId_matchNr&quot;, list.size().toString())</string
               <stringProp name="JSONPostProcessor.defaultValues">userUid_NotFound</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="evaluationStatusId_JSON Extractor">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="evaluationStatusId_JSON Extractor" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">evaluationStatusId</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.result.list[*].evaluationStatus.id</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
@@ -29381,7 +29379,7 @@ vars.put(&quot;evaluationStatusId_matchNr&quot;, list.size().toString())</string
             <hashTree/>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="4.0 Ir a Feedback" enabled="true">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="4.0 Ir a Feedback">
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
@@ -29623,7 +29621,7 @@ vars.put(&quot;evaluationStatusId_matchNr&quot;, list.size().toString())</string
                     </elementProp>
                     <elementProp name="origin" elementType="Header">
                       <stringProp name="Header.name">origin</stringProp>
-                      <stringProp name="Header.value">https://talent-mercadolibre-beta.starmeup.com</stringProp>
+                      <stringProp name="Header.value">https://${originURL}</stringProp>
                     </elementProp>
                     <elementProp name="priority" elementType="Header">
                       <stringProp name="Header.name">priority</stringProp>
@@ -29743,7 +29741,7 @@ vars.put(&quot;evaluationStatusId_matchNr&quot;, list.size().toString())</string
                 </HeaderManager>
                 <hashTree/>
               </hashTree>
-              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.5 AI POST /ai-api/api/v1/geai?o=SMU_FEEDBACK_WEB&amp;v=2">
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.5 AI POST /ai-api/api/v1/geai?o=SMU_FEEDBACK_WEB&amp;v=2" enabled="true">
                 <stringProp name="TestPlan.comments">AI agents</stringProp>
                 <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                 <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -29814,7 +29812,7 @@ vars.put(&quot;evaluationStatusId_matchNr&quot;, list.size().toString())</string
                   <stringProp name="TestPlan.comments">Created from cURL on 2026-01-26T10:45:41.6253421</stringProp>
                 </HeaderManager>
                 <hashTree/>
-                <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="aiNotes_Boundary Extractor">
+                <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="aiNotes_Boundary Extractor" enabled="true">
                   <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
                   <stringProp name="BoundaryExtractor.refname">aiNotes</stringProp>
                   <stringProp name="BoundaryExtractor.lboundary">\&quot;message\&quot;: \&quot;</stringProp>
@@ -29825,11 +29823,11 @@ vars.put(&quot;evaluationStatusId_matchNr&quot;, list.size().toString())</string
                 </BoundaryExtractor>
                 <hashTree/>
               </hashTree>
-              <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="informacion adicional" enabled="false">
+              <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="informacion adicional" enabled="true">
                 <boolProp name="TransactionController.includeTimers">false</boolProp>
               </TransactionController>
               <hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.6 /betterme/api/v1/feedback-sessions">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.6 /betterme/api/v1/feedback-sessions" enabled="true">
                   <stringProp name="TestPlan.comments">ir Prepara Feedback    38d00928be3f028d0a463852014e680d</stringProp>
                   <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -29866,7 +29864,7 @@ vars.put(&quot;evaluationStatusId_matchNr&quot;, list.size().toString())</string
                   <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
                 </HTTPSamplerProxy>
                 <hashTree>
-                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
                     <collectionProp name="HeaderManager.headers">
                       <elementProp name="User-Agent" elementType="Header">
                         <stringProp name="Header.name">User-Agent</stringProp>
@@ -29916,14 +29914,14 @@ vars.put(&quot;evaluationStatusId_matchNr&quot;, list.size().toString())</string
                     <stringProp name="TestPlan.comments">Created from cURL on 2026-01-26T10:30:09.7265389</stringProp>
                   </HeaderManager>
                   <hashTree/>
-                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="evaluationId SON Extractor">
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="evaluationId SON Extractor" enabled="true">
                     <stringProp name="JSONPostProcessor.referenceNames">evaluationId</stringProp>
                     <stringProp name="JSONPostProcessor.jsonPathExprs">$.result.performance.evaluation.id</stringProp>
                     <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
                     <stringProp name="JSONPostProcessor.defaultValues">evaluationId_NotFound</stringProp>
                   </JSONPostProcessor>
                   <hashTree/>
-                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="selfEvaluationId SON Extractor">
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="selfEvaluationId SON Extractor" enabled="true">
                     <stringProp name="JSONPostProcessor.referenceNames">selfEvaluationId</stringProp>
                     <stringProp name="JSONPostProcessor.jsonPathExprs">$.result.performance.selfEvaluation.id</stringProp>
                     <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
@@ -29931,14 +29929,14 @@ vars.put(&quot;evaluationStatusId_matchNr&quot;, list.size().toString())</string
                   </JSONPostProcessor>
                   <hashTree/>
                 </hashTree>
-                <IfController guiclass="IfControllerPanel" testclass="IfController" testname="evaluationId If Controller">
+                <IfController guiclass="IfControllerPanel" testclass="IfController" testname="evaluationId If Controller" enabled="true">
                   <stringProp name="IfController.condition">${__jexl3(&quot;${evaluationId}&quot; != &quot;evaluationId_NotFound&quot;)}</stringProp>
                   <boolProp name="IfController.evaluateAll">false</boolProp>
                   <boolProp name="IfController.useExpression">true</boolProp>
                   <stringProp name="TestPlan.comments">evaluationStatusId_</stringProp>
                 </IfController>
                 <hashTree>
-                  <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.7 GET  /betterme/api/v3/evaluations/{evaluationStatusId}">
+                  <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.7 GET  /betterme/api/v3/evaluations/{evaluationStatusId}" enabled="true">
                     <stringProp name="TestPlan.comments">Created from cURL on 2026-02-05T17:02:57.7872924</stringProp>
                     <stringProp name="HTTPSampler.domain">api.starmeup.com</stringProp>
                     <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -30210,13 +30208,13 @@ vars.put(&quot;evaluationStatusId_matchNr&quot;, list.size().toString())</string
                   </HeaderManager>
                   <hashTree/>
                 </hashTree>
-                <IfController guiclass="IfControllerPanel" testclass="IfController" testname="selfEvaluationId If Controller">
+                <IfController guiclass="IfControllerPanel" testclass="IfController" testname="selfEvaluationId If Controller" enabled="false">
                   <stringProp name="IfController.condition">${__jexl3(&quot;${selfEvaluationId}&quot; != &quot;selfEvaluationId_NotFound&quot;)}</stringProp>
                   <boolProp name="IfController.evaluateAll">false</boolProp>
                   <boolProp name="IfController.useExpression">true</boolProp>
                 </IfController>
                 <hashTree>
-                  <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.10 GET /betterme/api/v3/evaluations/{selfEvaluationId}">
+                  <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.10 GET /betterme/api/v3/evaluations/{selfEvaluationId}" enabled="true">
                     <stringProp name="TestPlan.comments">Autoevaluacion</stringProp>
                     <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                     <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -31020,7 +31018,7 @@ vars.put(&quot;evaluationStatusId_matchNr&quot;, list.size().toString())</string
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <IfController guiclass="IfControllerPanel" testclass="IfController" testname="selfEvaluationId If Controller" enabled="true">
+            <IfController guiclass="IfControllerPanel" testclass="IfController" testname="selfEvaluationId If Controller" enabled="false">
               <stringProp name="IfController.condition">${__jexl3(&quot;${selfEvaluationId}&quot; != &quot;selfEvaluationId_NotFound&quot;)}</stringProp>
               <boolProp name="IfController.evaluateAll">false</boolProp>
               <boolProp name="IfController.useExpression">true</boolProp>
@@ -31193,7 +31191,7 @@ vars.put(&quot;evaluationStatusId_matchNr&quot;, list.size().toString())</string
         </DebugSampler>
         <hashTree/>
       </hashTree>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
@@ -31227,11 +31225,11 @@ vars.put(&quot;evaluationStatusId_matchNr&quot;, list.size().toString())</string
             <connectTime>true</connectTime>
           </value>
         </objProp>
-        <stringProp name="filename">C:\Users\juandavid.martinez\Desktop\MELI\Performance\SMU\SMU-PR25\SMU-PR25_Results\SesionesDeFeedback\SMU_PR25-SesionesDeFeedback_50VU-12min_Feb_10</stringProp>
+        <stringProp name="filename">C:\Users\juandavid.martinez\Desktop\MELI\Performance\SMU\SMU-PR25\SMU-PR25_Results\SesionesDeFeedback\SMU_PR25-SesionesDeFeedback_90VU-15min_Feb_12_2</stringProp>
         <stringProp name="TestPlan.comments">967881 -  968161  -  967804</stringProp>
       </ResultCollector>
       <hashTree/>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="ERROR View Results Tree">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="ERROR View Results Tree" enabled="false">
         <boolProp name="ResultCollector.error_logging">true</boolProp>
         <objProp>
           <name>saveConfig</name>
@@ -31265,7 +31263,7 @@ vars.put(&quot;evaluationStatusId_matchNr&quot;, list.size().toString())</string
             <connectTime>true</connectTime>
           </value>
         </objProp>
-        <stringProp name="filename">C:\Users\juandavid.martinez\Desktop\MELI\Performance\SMU\SMU-PR25\SMU-PR25_Results\SesionesDeFeedback\SMU_PR25-SesionesDeFeedback_ERROR_50VU-12min_Feb_10</stringProp>
+        <stringProp name="filename">C:\Users\juandavid.martinez\Desktop\MELI\Performance\SMU\SMU-PR25\SMU-PR25_Results\SesionesDeFeedback\SMU_PR25-SesionesDeFeedback_ERROR_90VU-15min_Feb_12_2</stringProp>
       </ResultCollector>
       <hashTree/>
       <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
@@ -31343,7 +31341,7 @@ vars.put(&quot;evaluationStatusId_matchNr&quot;, list.size().toString())</string
         <stringProp name="filename"></stringProp>
       </ResultCollector>
       <hashTree/>
-      <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report">
+      <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report" enabled="false">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
@@ -31380,7 +31378,44 @@ vars.put(&quot;evaluationStatusId_matchNr&quot;, list.size().toString())</string
         <stringProp name="filename"></stringProp>
       </ResultCollector>
       <hashTree/>
-      <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="Backend Listener" enabled="false">
+      <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="ERROR Aggregate Report " enabled="false">
+        <boolProp name="ResultCollector.error_logging">true</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="Backend Listener">
         <elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments">
           <collectionProp name="Arguments.arguments">
             <elementProp name="influxdbMetricsSender" elementType="Argument">
