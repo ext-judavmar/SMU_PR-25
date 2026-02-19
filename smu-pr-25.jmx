@@ -5,6 +5,8 @@
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
     </TestPlan>
     <hashTree>
       <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager">
@@ -32,17 +34,17 @@
           </elementProp>
           <elementProp name="virtualUsers" elementType="Argument">
             <stringProp name="Argument.name">virtualUsers</stringProp>
-            <stringProp name="Argument.value">${__P(virtualUsers,90)}</stringProp>
+            <stringProp name="Argument.value">${__P(virtualUsers,1)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="rampUp" elementType="Argument">
             <stringProp name="Argument.name">rampUp</stringProp>
-            <stringProp name="Argument.value">${__P(rampUp,210)}</stringProp>
+            <stringProp name="Argument.value">${__P(rampUp,1)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="testTime" elementType="Argument">
             <stringProp name="Argument.name">testTime</stringProp>
-            <stringProp name="Argument.value">${__P(testTime,810)}</stringProp>
+            <stringProp name="Argument.value">${__P(testTime,900)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="timestamp" elementType="Argument">
@@ -67,7 +69,7 @@
           </elementProp>
           <elementProp name="userTime" elementType="Argument">
             <stringProp name="Argument.name">userTime</stringProp>
-            <stringProp name="Argument.value">${__P(userTime,800)}</stringProp>
+            <stringProp name="Argument.value">${__P(userTime,1300)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="constantDelay" elementType="Argument">
@@ -108,7 +110,7 @@
         <stringProp name="shareMode">shareMode.all</stringProp>
       </CSVDataSet>
       <hashTree/>
-      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="BETA - Evaluation - CSV Data Set Config">
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="BETA - Evaluation - CSV Data Set Config" enabled="true">
         <stringProp name="filename">Beta_SMU_PR-25-Evaluacion.csv</stringProp>
         <stringProp name="fileEncoding"></stringProp>
         <stringProp name="variableNames">user,password,identification</stringProp>
@@ -26842,7 +26844,7 @@ vars.put(&quot;evaluationStatusId_matchNr&quot;, list.size().toString())</string
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
-          <intProp name="LoopController.loops">-1</intProp>
+          <stringProp name="LoopController.loops">1</stringProp>
           <boolProp name="LoopController.continue_forever">false</boolProp>
         </elementProp>
       </ThreadGroup>
@@ -28673,7 +28675,7 @@ vars.put(&quot;evaluationStatusId_matchNr&quot;, list.size().toString())</string
             </hashTree>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="3.0 Evaluadores Panel">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="3.0 Evaluadores Panel" enabled="true">
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
@@ -29379,7 +29381,7 @@ vars.put(&quot;evaluationStatusId_matchNr&quot;, list.size().toString())</string
             <hashTree/>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="4.0 Ir a Feedback">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="4.0 Ir a Feedback" enabled="true">
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
@@ -29594,6 +29596,11 @@ vars.put(&quot;evaluationStatusId_matchNr&quot;, list.size().toString())</string
                 <boolProp name="displaySystemProperties">false</boolProp>
               </DebugSampler>
               <hashTree/>
+              <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="${CounterLoop} userTime Gaussian Random Timer" enabled="false">
+                <stringProp name="ConstantTimer.delay">${constantDelay}</stringProp>
+                <stringProp name="RandomTimer.range">${userTime}</stringProp>
+              </GaussianRandomTimer>
+              <hashTree/>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.3 AI GET /json/lottiefiles/chatbot/default/loader.json" enabled="true">
                 <stringProp name="TestPlan.comments">Created from cURL on 2026-02-05T16:45:02.6176801</stringProp>
                 <stringProp name="HTTPSampler.domain">os-assets.starmeup.com</stringProp>
@@ -29741,7 +29748,7 @@ vars.put(&quot;evaluationStatusId_matchNr&quot;, list.size().toString())</string
                 </HeaderManager>
                 <hashTree/>
               </hashTree>
-              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.5 AI POST /ai-api/api/v1/geai?o=SMU_FEEDBACK_WEB&amp;v=2" enabled="true">
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="4.5 AI POST /ai-api/api/v1/geai?o=SMU_FEEDBACK_WEB&amp;v=2">
                 <stringProp name="TestPlan.comments">AI agents</stringProp>
                 <stringProp name="HTTPSampler.domain">${URL}</stringProp>
                 <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -29823,6 +29830,10 @@ vars.put(&quot;evaluationStatusId_matchNr&quot;, list.size().toString())</string
                 </BoundaryExtractor>
                 <hashTree/>
               </hashTree>
+              <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="userTime Transaction Controller" enabled="false">
+                <boolProp name="TransactionController.includeTimers">false</boolProp>
+              </TransactionController>
+              <hashTree/>
               <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="informacion adicional" enabled="true">
                 <boolProp name="TransactionController.includeTimers">false</boolProp>
               </TransactionController>
@@ -31225,7 +31236,7 @@ vars.put(&quot;evaluationStatusId_matchNr&quot;, list.size().toString())</string
             <connectTime>true</connectTime>
           </value>
         </objProp>
-        <stringProp name="filename">C:\Users\juandavid.martinez\Desktop\MELI\Performance\SMU\SMU-PR25\SMU-PR25_Results\SesionesDeFeedback\SMU_PR25-SesionesDeFeedback_90VU-15min_Feb_12_2</stringProp>
+        <stringProp name="filename">C:\Users\juandavid.martinez\Desktop\MELI\Performance\SMU\SMU-PR25\SMU-PR25_Results\SesionesDeFeedback\SMU_PR25-SesionesDeFeedback_NOAI_200VU-15min_Feb_18</stringProp>
         <stringProp name="TestPlan.comments">967881 -  968161  -  967804</stringProp>
       </ResultCollector>
       <hashTree/>
@@ -31263,7 +31274,7 @@ vars.put(&quot;evaluationStatusId_matchNr&quot;, list.size().toString())</string
             <connectTime>true</connectTime>
           </value>
         </objProp>
-        <stringProp name="filename">C:\Users\juandavid.martinez\Desktop\MELI\Performance\SMU\SMU-PR25\SMU-PR25_Results\SesionesDeFeedback\SMU_PR25-SesionesDeFeedback_ERROR_90VU-15min_Feb_12_2</stringProp>
+        <stringProp name="filename">C:\Users\juandavid.martinez\Desktop\MELI\Performance\SMU\SMU-PR25\SMU-PR25_Results\SesionesDeFeedback\SMU_PR25-SesionesDeFeedback_ERROR_NOAI_200VU-15min_Feb_18</stringProp>
       </ResultCollector>
       <hashTree/>
       <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
